@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chai Factory — Your Chai. Your Way.</title>
+  <meta name="description" content="Chai Factory — make your own chai in a virtual Indian kitchen. Pick your ingredients, watch them go into the pot, then order chai, snacks and combos.">
+  <meta name="theme-color" content="#1a0e08">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23e0a763'/%3E%3Cpath d='M9 12h12l-1.5 9h-9z' fill='%231a0e08'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-loading">
+
+    <div class="loader" id="loader" aria-live="polite">
+    <div class="loader__inner">
+      <svg class="loader__cup" viewBox="0 0 170 190" aria-hidden="true">
+        <defs>
+          <clipPath id="lcup"><path d="M38 64 H122 L112 148 Q110 160 98 160 H62 Q50 160 48 148 Z"/></clipPath>
+          <linearGradient id="lliq" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#e0a763"/><stop offset="1" stop-color="#7a431a"/>
+          </linearGradient>
+        </defs>
+        <path class="ls ls1" d="M68 54 C 56 40, 80 32, 68 16"/>
+        <path class="ls ls2" d="M82 54 C 70 40, 94 32, 82 16"/>
+        <path class="ls ls3" d="M96 54 C 84 40, 108 32, 96 16"/>
+        <g clip-path="url(#lcup)"><rect id="lLiquid" x="30" y="160" width="100" height="100" fill="url(#lliq)"/></g>
+        <path d="M38 64 H122 L112 148 Q110 160 98 160 H62 Q50 160 48 148 Z" fill="rgba(255,255,255,.05)" stroke="#f5ead6" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M120 80 C 150 78 150 124 113 126" fill="none" stroke="#f5ead6" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="80" cy="172" rx="58" ry="8" fill="none" stroke="#c98a46" stroke-width="2.5"/>
+      </svg>
+      <p class="loader__brand">CHAI FACTORY</p>
+      <p class="loader__text"><span id="loaderPct">0</span>% · brewing your experience</p>
+    </div>
+  </div>
+
+  <div class="curtain" id="curtain" aria-hidden="true"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="nav">
+    <a href="#home" class="nav__logo" data-nav aria-label="Chai Factory home">
+      <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path d="M5 11h18l-2 14a3 3 0 0 1-3 2.6h-8A3 3 0 0 1 7 25z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M23 14c4 0 4 7-1.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M11 7c-1.5-2 1.5-3 0-5M16 7c-1.5-2 1.5-3 0-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>CHAI <b>FACTORY</b></span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="#home" data-nav class="is-active">Home</a>
+      <a href="#studio" data-nav>Make Your Chai</a>
+      <a href="#menu" data-nav>Chai Menu</a>
+      <a href="#snacks" data-nav>Snacks</a>
+      <a href="#combos" data-nav>Combos</a>
+      <a href="#about" data-nav>About</a>
+      <a href="#contact" data-nav>Contact</a>
+      <a href="#studio" data-nav class="btn btn--primary nav__mobile-cta">Make Your Chai</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="cart-btn" id="cartBtn" aria-label="Open cart" type="button">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 7h12l-1 12a2 2 0 0 1-2 1.8H9A2 2 0 0 1 7 19z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 9V6a3 3 0 0 1 6 0v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="cart-btn__count" id="cartCount">0</span>
+      </button>
+      <a href="#menu" data-nav class="btn btn--primary btn--small nav__order magnetic"><span>Order Now</span></a>
+      <button class="burger" id="burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ 1. HERO ============ -->
+    <section class="hero" id="home">
+            <div class="hero__bg" data-depth="8" aria-hidden="true">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <pattern id="tile" width="160" height="80" patternUnits="userSpaceOnUse">
+              <rect width="160" height="80" fill="#34221a"/>
+              <path d="M0 0H160M0 40H160M0 0V40M80 0V40M40 40V80M120 40V80" stroke="#1b110c" stroke-width="3" fill="none"/>
+              <path d="M2 2H78V38H2z M82 2H158V38H82z M42 42H118V78H42z" fill="rgba(255,255,255,.03)"/>
+            </pattern>
+            <linearGradient id="win" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe0a0"/><stop offset="1" stop-color="#e29a45"/></linearGradient>
+            <linearGradient id="shaft" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd08a" stop-opacity=".35"/><stop offset="1" stop-color="#ffd08a" stop-opacity="0"/></linearGradient>
+            <linearGradient id="jar" x1="0" x2="1"><stop offset="0" stop-color="#5a5d61"/><stop offset=".4" stop-color="#a4a7ab"/><stop offset="1" stop-color="#43464a"/></linearGradient>
+            <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b4528"/><stop offset="1" stop-color="#3a2212"/></linearGradient>
+          </defs>
+          <rect width="1440" height="900" fill="url(#tile)"/>
+          <!-- window -->
+          <rect x="1030" y="70" width="290" height="360" rx="6" fill="#120a06"/>
+          <rect x="1042" y="82" width="266" height="336" fill="url(#win)"/>
+          <path d="M1175 82V418M1042 250H1308" stroke="#120a06" stroke-width="8"/>
+          <polygon points="1042,418 1308,418 900,900 560,900" fill="url(#shaft)"/>
+          <!-- shelf with dabbas -->
+          <rect x="90" y="360" width="560" height="16" rx="3" fill="url(#wood)"/>
+          <g>
+            <rect x="120" y="282" width="70" height="78" rx="6" fill="url(#jar)"/><rect x="116" y="272" width="78" height="14" rx="4" fill="#2d2f32"/>
+            <rect x="210" y="298" width="58" height="62" rx="6" fill="url(#jar)"/><rect x="206" y="290" width="66" height="12" rx="4" fill="#2d2f32"/>
+            <rect x="290" y="270" width="80" height="90" rx="6" fill="url(#jar)"/><rect x="286" y="260" width="88" height="14" rx="4" fill="#2d2f32"/>
+            <rect x="392" y="306" width="54" height="54" rx="6" fill="#b5623a"/><rect x="388" y="298" width="62" height="12" rx="4" fill="#7d3a1f"/>
+            <rect x="468" y="286" width="66" height="74" rx="6" fill="url(#jar)"/><rect x="464" y="276" width="74" height="14" rx="4" fill="#2d2f32"/>
+            <rect x="556" y="310" width="62" height="50" rx="6" fill="#b5623a"/>
+          </g>
+          <!-- hanging utensils -->
+          <rect x="130" y="110" width="440" height="6" rx="3" fill="#8b8e92"/>
+          <g fill="#9a9da1">
+            <path d="M190 116V190" stroke="#9a9da1" stroke-width="5"/><ellipse cx="190" cy="205" rx="22" ry="18"/>
+            <path d="M300 116V210" stroke="#9a9da1" stroke-width="5"/><circle cx="300" cy="230" r="26" fill="none" stroke="#9a9da1" stroke-width="5"/>
+            <path d="M420 116V180" stroke="#9a9da1" stroke-width="5"/><rect x="404" y="180" width="32" height="56" rx="14"/>
+          </g>
+          <!-- counter -->
+          <rect y="760" width="1440" height="140" fill="url(#wood)"/>
+        </svg>
+      </div>
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="bokeh" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="hero__leaves" id="leaves" data-depth="22" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <div class="hero__content" id="heroContent">
+          <p class="eyebrow eyebrow--light" id="heroEyebrow">Indian Chai Café · Make It Yourself</p>
+          <h1 class="hero__title" id="heroTitle" aria-label="YOUR CHAI. YOUR WAY.">
+            <span class="line">YOUR CHAI.</span>
+            <span class="line line--accent">YOUR WAY.</span>
+          </h1>
+          <p class="hero__sub" id="heroSub">Create your perfect cup of happiness.</p>
+          <div class="hero__cta" id="heroCta">
+            <a href="#studio" data-nav class="btn btn--primary magnetic"><span>Make Your Chai</span></a>
+            <a href="#menu" data-nav class="btn btn--ghost magnetic"><span>Explore Our Menu</span></a>
+          </div>
+        </div>
+
+        <div class="hero__scene" id="heroScene" data-depth="8">
+          <div class="hero__scene-inner" id="sceneInner">
+                        <svg class="scene" viewBox="0 0 600 520" role="img" aria-label="Chai boiling in a black saucepan on a lit gas stove">
+              <defs>
+                <linearGradient id="gSteel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a3a6aa"/><stop offset=".45" stop-color="#6b6e72"/><stop offset="1" stop-color="#303236"/></linearGradient>
+                <linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d3f43"/><stop offset="1" stop-color="#141517"/></linearGradient>
+                <linearGradient id="gPot" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0b0a0a"/><stop offset=".22" stop-color="#4a443f"/><stop offset=".4" stop-color="#1d1a18"/><stop offset=".75" stop-color="#12100f"/><stop offset="1" stop-color="#050505"/></linearGradient>
+                <linearGradient id="gJug" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8d9094"/><stop offset=".35" stop-color="#eceef0"/><stop offset=".7" stop-color="#9a9da1"/><stop offset="1" stop-color="#5b5e62"/></linearGradient>
+                <linearGradient id="gBrass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a5320"/><stop offset=".35" stop-color="#e3b86a"/><stop offset=".7" stop-color="#a77a33"/><stop offset="1" stop-color="#5d3f16"/></linearGradient>
+                <radialGradient id="gSheen" cx=".35" cy=".4" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+                <radialGradient id="gGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff9a3c" stop-opacity=".7"/><stop offset=".6" stop-color="#ff6a1a" stop-opacity=".2"/><stop offset="1" stop-color="#ff6a1a" stop-opacity="0"/></radialGradient>
+                <clipPath id="clipChai"><ellipse cx="300" cy="254" rx="102" ry="9.5"/></clipPath>
+              </defs>
+
+              <!-- warm fire glow behind -->
+              <ellipse id="glow" cx="300" cy="380" rx="230" ry="120" fill="url(#gGlow)" style="mix-blend-mode:screen"/>
+
+              <!-- STOVE -->
+              <rect x="40" y="400" width="520" height="42" rx="6" fill="url(#gSteel)"/>
+              <rect x="40" y="400" width="520" height="3" rx="1.5" fill="#fff" opacity=".35"/>
+              <rect x="40" y="442" width="520" height="80" fill="url(#gFront)"/>
+              <g fill="#0d0d0e" stroke="#7b7e82" stroke-width="2">
+                <circle cx="130" cy="474" r="17"/><circle cx="240" cy="474" r="17"/><circle cx="360" cy="474" r="17"/><circle cx="470" cy="474" r="17"/>
+              </g>
+              <g stroke="#e8e8e8" stroke-width="3" stroke-linecap="round">
+                <path d="M130 462v9"/><path d="M240 462l5 8"/><path d="M360 462l-5 8"/><path d="M470 462v9"/>
+              </g>
+              <!-- side burners (off) -->
+              <ellipse cx="108" cy="404" rx="46" ry="6" fill="#121212"/>
+              <ellipse cx="492" cy="404" rx="46" ry="6" fill="#121212"/>
+              <!-- main burner -->
+              <ellipse cx="300" cy="404" rx="100" ry="12" fill="#101010"/>
+              <ellipse cx="300" cy="402" rx="92" ry="10" fill="none" stroke="#3a3a3a" stroke-width="3"/>
+              <!-- grate -->
+              <g stroke="#060606" stroke-width="7" stroke-linecap="round" fill="none">
+                <path d="M212 400L150 394"/><path d="M388 400L450 394"/><path d="M240 408L214 414"/><path d="M360 408L386 414"/>
+              </g>
+
+              <!-- POT -->
+              <g id="pot">
+                <!-- handle -->
+                <path d="M408 272L548 256Q556 256 556 266Q556 274 548 276L410 296Z" fill="#141312"/>
+                <path d="M412 276L546 261" stroke="#6a625b" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+                <circle cx="530" cy="266" r="3" fill="#050505"/>
+                <!-- body -->
+                <path d="M188 252Q190 330 204 390Q207 400 220 400H380Q393 400 396 390Q410 330 412 252Z" fill="url(#gPot)"/>
+                <path d="M196 270Q199 330 210 384" stroke="#fff" stroke-opacity=".16" stroke-width="6" stroke-linecap="round" fill="none"/>
+                <path d="M200 340H400" stroke="#000" stroke-opacity=".4" stroke-width="2"/>
+                <ellipse cx="300" cy="399" rx="94" ry="5" fill="#000" opacity=".5"/>
+                <!-- rim -->
+                <ellipse cx="300" cy="252" rx="112" ry="14" fill="#2a2623"/>
+                <ellipse cx="300" cy="251" rx="112" ry="14" fill="none" stroke="#7d756d" stroke-width="2.4"/>
+                <ellipse cx="300" cy="252" rx="106" ry="11" fill="#050404"/>
+                <!-- chai -->
+                <ellipse id="chaiSurface" cx="300" cy="254" rx="102" ry="9.5" fill="#9a5a26"/>
+                <g id="bubbles" clip-path="url(#clipChai)"></g>
+                <ellipse cx="288" cy="251" rx="70" ry="5" fill="url(#gSheen)"/>
+              </g>
+
+              <!-- foam bumps (boil-over) -->
+              <g id="foamBumps" fill="#f1dfbd" stroke="rgba(120,70,20,.35)" stroke-width="1">
+                <circle cx="204" cy="248" r="13"/><circle cx="224" cy="241" r="16"/><circle cx="248" cy="239" r="14"/>
+                <circle cx="272" cy="242" r="11"/><circle cx="356" cy="241" r="12"/><circle cx="386" cy="246" r="12"/>
+              </g>
+
+              <!-- spill: drips on pot wall, puddle on stove, thread over edge -->
+              <g id="spill" fill="none" stroke-linecap="round">
+                <path id="drip1" d="M191 258C186 296 194 340 200 394" stroke="#9a5a26" stroke-width="8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+                <path id="drip2" d="M207 264C204 300 208 340 210 394" stroke="#b36d2f" stroke-width="5" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+                <ellipse id="puddle" cx="180" cy="410" rx="54" ry="5.5" fill="#9a5a26" stroke="none" opacity="0"/>
+                <path id="thread" d="M141 412C140 440 144 480 140 524" stroke="#9a5a26" stroke-width="6" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+              </g>
+
+              <!-- chai cup on the side -->
+              <g id="sideCup">
+                <ellipse cx="502" cy="402" rx="40" ry="7" fill="#000" opacity=".35"/>
+                <path d="M470 338H534L528 392Q526 402 516 402H488Q478 402 476 392Z" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.65)" stroke-width="2.4" stroke-linejoin="round"/>
+                <path d="M473 352H531L527 390Q526 398 516 398H488Q478 398 477 390Z" fill="#a8642b"/>
+                <ellipse cx="502" cy="352" rx="29" ry="4.5" fill="#f2d9a9" opacity=".9"/>
+                <path d="M481 358L484 392" stroke="#fff" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/>
+                <path class="wisp w1" d="M492 336C486 322 500 314 494 300"/><path class="wisp w2" d="M506 336C500 322 514 314 508 300"/>
+              </g>
+
+              <!-- JUGS + STREAMS -->
+              <g id="jugMilk">
+                <path d="M72 56C44 56 44 102 72 102" fill="none" stroke="#9a9da1" stroke-width="7" stroke-linecap="round"/>
+                <path d="M72 40H132L128 36H72Z" fill="#c9ccd0"/>
+                <path d="M72 40H130V112Q130 122 120 122H82Q72 122 72 112Z" fill="url(#gJug)"/>
+                <rect x="72" y="62" width="58" height="5" fill="#f5ead6" opacity=".7"/>
+              </g>
+              <g id="jugTea">
+                <path d="M528 56C556 56 556 102 528 102" fill="none" stroke="#a77a33" stroke-width="7" stroke-linecap="round"/>
+                <path d="M528 40H468L472 36H528Z" fill="#e3b86a"/>
+                <path d="M528 40H470V112Q470 122 480 122H518Q528 122 528 112Z" fill="url(#gBrass)"/>
+                <rect x="470" y="62" width="58" height="5" fill="#3a2112" opacity=".5"/>
+              </g>
+              <path id="streamMilk" d="M133 44Q205 56 274 254" fill="none" stroke="#f6ecd8" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+              <path id="streamTea" d="M467 44Q395 56 326 254" fill="none" stroke="#7a3f14" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+            </svg>
+            <canvas class="scene__fx" id="fx" aria-hidden="true"></canvas>
+          </div>
+        </div>
+      </div>
+
+            <svg class="hero__wave" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+        <g class="wave" id="waveA"><path d="M0 70C180 20 540 120 720 70C900 20 1260 120 1440 70C1620 20 1980 120 2160 70C2340 20 2700 120 2880 70V140H0Z" fill="#8a4f22"/></g>
+        <g class="wave" id="waveB"><path d="M0 84C180 36 540 130 720 84C900 38 1260 130 1440 84C1620 38 1980 130 2160 84C2340 38 2700 130 2880 84V140H0Z" fill="#c98a46"/></g>
+        <g class="wave" id="waveC"><path d="M0 104C180 70 540 140 720 104C900 70 1260 140 1440 104C1620 70 1980 140 2160 104C2340 70 2700 140 2880 104V140H0Z" fill="#f5ead6"/></g>
+      </svg>
+      <a href="#studio" data-nav class="scroll-cue" aria-label="Scroll to make your chai"><span></span></a>
+    </section>
+
+    <!-- ============ 2. MAKE YOUR OWN CHAI ============ -->
+    <section class="section studio" id="studio">
+      <div class="studio__float" id="studioFloat" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section__head section__head--light" data-reveal>
+          <p class="eyebrow eyebrow--light">Make Your Own Chai</p>
+          <h2 class="title">YOUR RECIPE. <em>YOUR KITCHEN.</em></h2>
+          <p class="section__sub">Choose your ingredients, then watch every one of them go into the pot. Saffron only falls in if you pick Kesar — the kitchen follows your recipe.</p>
+        </header>
+
+        <div class="studio__grid">
+          <div class="studio__panel" id="studioPanel"></div>
+
+          <div class="studio__side">
+            <div class="stage-wrap" id="stageWrap">
+              <ol class="stage-pills" id="stagePills" aria-label="Chai making stages">
+                <li><span>1</span>Water</li>
+                <li><span>2</span>Tea patti</li>
+                <li><span>3</span>Sugar &amp; spices</li>
+                <li><span>4</span>Milk</li>
+                <li><span>5</span>Boiling</li>
+                <li><span>6</span>Pouring</li>
+              </ol>
+              <div class="stage-canvas" id="stageCanvas">
+                <canvas id="studioCanvas" role="img" aria-label="Animated kitchen: your chai being made on a gas stove"></canvas>
+                <div class="stage-idle" id="stageIdle">
+                  <p class="stage-idle__t">Your virtual kitchen is ready</p>
+                  <p>Pick your ingredients and press <b>Start making my chai</b>.</p>
+                </div>
+                <div class="stage-caption" id="stageCaption" aria-live="polite"></div>
+                <div class="stage-ctrl" id="stageCtrl" hidden>
+                  <button type="button" id="speedBtn" class="chip-btn" aria-label="Change speed">1×</button>
+                  <button type="button" id="skipBtn" class="chip-btn">Skip ⏭</button>
+                </div>
+              </div>
+              <div class="stage-bar"><i id="stageProg"></i></div>
+              <div class="result" id="result" hidden></div>
+            </div>
+
+            <div class="basket" id="basket" aria-live="polite"></div>
+            <button class="btn btn--primary btn--large btn--block magnetic" id="startBtn" type="button"><span>START MAKING MY CHAI</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. CHAI MENU ============ -->
+    <section class="section menu" id="menu">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow">Chai Menu</p>
+          <h2 class="title">EIGHT WAYS TO <em>FALL IN LOVE.</em></h2>
+          <p class="section__sub">Brewed to order from whole spices, strong leaves and full-cream milk. Tap a card for a quick look.</p>
+        </header>
+        <div class="menu-grid" id="chaiGrid"><article class="card" data-id="classic" style="--glow: #6b3a1a;">
+      <div class="card__media"><span class="card__tag">Everyday</span><img src="assets/images/chai/classic.jpg" alt="Classic Chai" loading="lazy" decoding="async" data-art="chai:classic" style="object-position:50% 50%">
+        <button class="qv-btn" type="button" data-qv="classic" aria-label="Quick view Classic Chai"><span>Quick view</span></button></div>
+      <div class="card__body"><h3>Classic Chai</h3><p>Strong Assam leaves, full-cream milk and a little sugar. Chai the way your home makes it.</p>
+        <div class="card__foot"><span class="price">₹79<small>/ cup</small></span>
+        <button class="btn btn--primary btn--small" type="button" data-add="classic"><span>Add to Cart</span></button></div></div></article><article class="card" data-id="masala" style="--glow: #8a4a1e;">
+      <div class="card__media"><span class="card__tag">Bestseller</span><img src="assets/images/chai/masala.jpg" alt="Masala Chai" loading="lazy" decoding="async" data-art="chai:masala" style="object-position:50% 50%">
+        <button class="qv-btn" type="button" data-qv="masala" aria-label="Quick view Masala Chai"><span>Quick view</span></button></div>
+      <div class="card__body"><h3>Masala Chai</h3><p>Our signature brew — crushed cardamom, cloves, cinnamon and black pepper in strong tea.</p>
+        <div class="card__foot"><span class="price">₹129<small>/ cup</small></span>
+        <button class="btn btn--primary btn--small" type="button" data-add="masala"><span>Add to Cart</span></button></div></div></article><article class="card" data-id="adrak" style="--glow: #7a5a20;">
+      <div class="card__media"><span class="card__tag">Warming</span><img src="assets/images/chai/adrak.jpg" alt="Adrak Chai" loading="lazy" decoding="async" data-art="chai:adrak" style="object-position:50% 50%">
+        <button class="qv-btn" type="button" data-qv="adrak" aria-label="Quick view Adrak Chai"><span>Quick view</span></button></div>
+      <div class="card__body"><h3>Adrak Chai</h3><p>Fresh-crushed ginger simmered hard for a bold, peppery kick. Perfect for rainy evenings.</p>
+        <div class="card__foot"><span class="price">₹119<small>/ cup</small></span>
+        <button class="btn btn--primary btn--small" type="button" data-add="adrak"><span>Add to Cart</span></button></div></div></article><article class="card" data-id="elaichi" style="--glow: #4f6a2a;">
+      <div class="card__media"><span class="card__tag">Aromatic</span><img src="assets/images/chai/elaichi.jpg" alt="Elaichi Chai" loading="lazy" decoding="async" data-art="chai:elaichi" style="object-position:50% 50%">
+        <button class="qv-btn" type="button" data-qv="elaichi" aria-label="Quick view Elaichi Chai"><span>Quick view</span></button></div>
+      <div class="card__body"><h3>Elaichi Chai</h3><p>Pounded green cardamom pods lend a sweet, floral aroma to a creamy, golden cup.</p>
+        <div class="card__foot"><span class="price">₹139<small>/ cup</small></span>
+        <button class="btn btn--primary btn--small" type="button" data-add="elaichi"><span>Add to Cart</span></button></div></div></article><article class="card" data-id="kesar" style="--glow: #a2681a;">
+      <div class="card__media"><span class="card__tag">Royal</span><img src="assets/images/chai/kesar.jpg" alt="Kesar Chai" loading="lazy" decoding="async" data-art="chai:kesar" style="object-position:50% 40%">
+        <button class="qv-btn" type="button" data-qv="kesar" aria-label="Quick view Kesar Chai"><span>Quick view</span></button></div>
+      <div class="card__body"><h3>Kesar Chai</h3><p>Hand-picked saffron strands steeped in rich milk for a regal, golden finish.</p>
+        <div class="card__foot"><span class="price">₹189<small>/ cup</small></span>
+        <button class="btn btn--primary btn--small" type="button" data-add="kesar"><span>Add to Cart</span></button></div></div></article><article class="card" data-id="kulhad" style="--glow: #8d4524;">
+      <div class="card__media"><span class="card__tag">Earthy</span><img src="assets/images/chai/kulhad.jpg" alt="Kulhad Chai" loading="lazy" decoding="async" data-art="chai:kulhad" style="object-position:50% 55%">
+        <button class="qv-btn" type="button" data-qv="kulhad" aria-label="Quick view Kulhad Chai"><span>Quick view</span></button></div>
+      <div class="card__body"><h3>Kulhad Chai</h3><p>Poured piping hot into a hand-fired clay kulhad that adds a soft, earthy fragrance.</p>
+        <div class="card__foot"><span class="price">₹99<small>/ cup</small></span>
+        <button class="btn btn--primary btn--small" type="button" data-add="kulhad"><span>Add to Cart</span></button></div></div></article><article class="card" data-id="cutting" style="--glow: #6b3a1a;">
+      <div class="card__media"><span class="card__tag">Street Classic</span><img src="assets/images/chai/cutting.jpg" alt="Cutting Chai" loading="lazy" decoding="async" data-art="chai:cutting" style="object-position:50% 40%">
+        <button class="qv-btn" type="button" data-qv="cutting" aria-label="Quick view Cutting Chai"><span>Quick view</span></button></div>
+      <div class="card__body"><h3>Cutting Chai</h3><p>The Mumbai half-glass classic: strong, sweet and served fast — best with a crisp rusk.</p>
+        <div class="card__foot"><span class="price">₹79<small>/ cup</small></span>
+        <button class="btn btn--primary btn--small" type="button" data-add="cutting"><span>Add to Cart</span></button></div></div></article><article class="card" data-id="tandoori" style="--glow: #6d3a1a;">
+      <div class="card__media"><span class="card__tag">Chef Special</span><img src="assets/images/chai/tandoori.jpg" alt="Special Tandoori Chai" loading="lazy" decoding="async" data-art="chai:tandoori" style="object-position:50% 45%">
+        <button class="qv-btn" type="button" data-qv="tandoori" aria-label="Quick view Special Tandoori Chai"><span>Quick view</span></button></div>
+      <div class="card__body"><h3>Special Tandoori Chai</h3><p>Chai poured into a clay cup heated in the tandoor — smoky, caramelised and unforgettable.</p>
+        <div class="card__foot"><span class="price">₹159<small>/ cup</small></span>
+        <button class="btn btn--primary btn--small" type="button" data-add="tandoori"><span>Add to Cart</span></button></div></div></article></div>
+      </div>
+    </section>
+
+    <!-- ============ 5. SNACKS ============ -->
+    <section class="section snacks" id="snacks">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow">Snacks &amp; Bakery</p>
+          <h2 class="title">CHAI NEEDS <em>COMPANY.</em></h2>
+          <p class="section__sub">Hot, crisp and fresh from the kadhai — the right partner for every cup.</p>
+        </header>
+        <div class="filters" id="snackFilters" role="group" aria-label="Filter snacks">
+          <button type="button" class="filter is-active" data-cat="All">All</button>
+          <button type="button" class="filter" data-cat="Indian Snacks">Indian Snacks</button>
+          <button type="button" class="filter" data-cat="Bakery">Bakery</button>
+          <button type="button" class="filter" data-cat="Sandwiches">Sandwiches</button>
+        </div>
+        <div class="menu-grid menu-grid--snacks" id="snackGrid"><article class="card card--snack" data-cat="Indian Snacks" style="--glow: #b9772a;">
+      <div class="card__media"><span class="card__tag">Indian Snacks</span><img src="assets/images/snacks/samosa.jpg" alt="Samosa" loading="lazy" decoding="async" data-art="snack:samosa" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Samosa</h3><p>Flaky pastry stuffed with spiced potato and peas, fried till golden.</p>
+        <div class="card__foot"><span class="price">₹30</span>
+        <div class="qty qty--sm" data-sq="samosa"><button type="button" data-q="-1" aria-label="Decrease Samosa quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Samosa quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="samosa"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Indian Snacks" style="--glow: #a9692a;">
+      <div class="card__media"><span class="card__tag">Indian Snacks</span><img src="assets/images/snacks/kachori.jpg" alt="Kachori" loading="lazy" decoding="async" data-art="snack:kachori" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Kachori</h3><p>Crisp, puffed shell filled with a spicy moong dal mixture.</p>
+        <div class="card__foot"><span class="price">₹35</span>
+        <div class="qty qty--sm" data-sq="kachori"><button type="button" data-q="-1" aria-label="Decrease Kachori quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Kachori quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="kachori"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Indian Snacks" style="--glow: #b0702a;">
+      <div class="card__media"><span class="card__tag">Indian Snacks</span><img src="assets/images/snacks/breadpakoda.jpg" alt="Bread Pakoda" loading="lazy" decoding="async" data-art="snack:breadpakoda" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Bread Pakoda</h3><p>Bread slices stuffed with potato, dipped in besan batter and fried.</p>
+        <div class="card__foot"><span class="price">₹40</span>
+        <div class="qty qty--sm" data-sq="breadpakoda"><button type="button" data-q="-1" aria-label="Decrease Bread Pakoda quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Bread Pakoda quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="breadpakoda"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Indian Snacks" style="--glow: #a86a28;">
+      <div class="card__media"><span class="card__tag">Indian Snacks</span><svg class="snack" viewBox="0 0 320 300" role="img" aria-label="Aloo Pakoda" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="u1-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e7b45a"></stop><stop offset="1" stop-color="#a86a28"></stop></linearGradient>
+        <radialGradient id="u1-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#e7b45a" stop-opacity=".5"></stop><stop offset="1" stop-color="#e7b45a" stop-opacity="0"></stop></radialGradient>
+        <linearGradient id="u1-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a34"></stop><stop offset="1" stop-color="#4a2d18"></stop></linearGradient>
+      </defs>
+      <circle cx="160" cy="150" r="140" fill="url(#u1-glow)"></circle>
+      <ellipse cx="160" cy="262" rx="120" ry="20" fill="#000" opacity=".3"></ellipse>
+      <ellipse cx="160" cy="250" rx="124" ry="24" fill="url(#u1-wood)"></ellipse><ellipse cx="160" cy="244" rx="124" ry="24" fill="#9c6a3e"></ellipse>
+      <ellipse cx="160" cy="236" rx="104" ry="20" fill="#efe3cc" stroke="#cdbb98" stroke-width="2"></ellipse>
+      <ellipse cx="120" cy="190" rx="38" ry="29.64" fill="url(#u1-g)" stroke="#a86a28" stroke-width="2.2" transform="rotate(0 120 190)"></ellipse><circle cx="110.5" cy="186.4" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="103.5" cy="179.9" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="129.7" cy="180.6" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="117.0" cy="192.1" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="123.3" cy="190.0" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="113.9" cy="196.2" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="133.1" cy="190.7" r="1.8" fill="rgba(255,235,170,.5)"></circle><ellipse cx="190" cy="184" rx="42" ry="32.76" fill="url(#u1-g)" stroke="#a86a28" stroke-width="2.2" transform="rotate(27 190 184)"></ellipse><circle cx="181.5" cy="174.5" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="211.8" cy="180.1" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="198.0" cy="175.7" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="213.3" cy="181.7" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="183.8" cy="183.4" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="212.7" cy="191.4" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="183.1" cy="188.5" r="1.8" fill="rgba(255,235,170,.5)"></circle><ellipse cx="156" cy="150" rx="36" ry="28.080000000000002" fill="url(#u1-g)" stroke="#a86a28" stroke-width="2.2" transform="rotate(54 156 150)"></ellipse><circle cx="150.4" cy="137.1" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="165.9" cy="152.8" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="160.5" cy="144.7" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="155.6" cy="144.0" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="142.2" cy="149.0" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="157.5" cy="156.8" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="174.8" cy="157.0" r="1.8" fill="rgba(255,235,170,.5)"></circle><ellipse cx="214" cy="214" rx="30" ry="23.400000000000002" fill="url(#u1-g)" stroke="#a86a28" stroke-width="2.2" transform="rotate(81 214 214)"></ellipse><circle cx="210.8" cy="223.3" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="214.9" cy="221.5" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="215.8" cy="211.1" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="196.7" cy="205.7" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="231.4" cy="212.7" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="200.2" cy="220.0" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="214.4" cy="222.5" r="1.8" fill="rgba(255,235,170,.5)"></circle><ellipse cx="108" cy="230" rx="30" ry="23.400000000000002" fill="url(#u1-g)" stroke="#a86a28" stroke-width="2.2" transform="rotate(108 108 230)"></ellipse><circle cx="106.2" cy="235.4" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="101.5" cy="218.7" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="107.9" cy="228.6" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="109.8" cy="218.4" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="118.3" cy="228.3" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="115.2" cy="236.4" r="1.8" fill="rgba(255,235,170,.5)"></circle><circle cx="93.0" cy="241.2" r="1.8" fill="rgba(255,235,170,.5)"></circle>
+      <g><path class="wisp w1" d="M130 128C118 108 142 96 130 76"></path><path class="wisp w2" d="M164 122C152 102 176 90 164 70"></path><path class="wisp w3" d="M198 128C186 108 210 96 198 76"></path></g>
+    </svg></div>
+      <div class="card__body"><h3>Aloo Pakoda</h3><p>Thin potato slices coated in spiced gram-flour batter.</p>
+        <div class="card__foot"><span class="price">₹50</span>
+        <div class="qty qty--sm" data-sq="aloopakoda"><button type="button" data-q="-1" aria-label="Decrease Aloo Pakoda quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Aloo Pakoda quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="aloopakoda"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Indian Snacks" style="--glow: #a05f22;">
+      <div class="card__media"><span class="card__tag">Indian Snacks</span><img src="assets/images/snacks/onionpakoda.jpg" alt="Onion Pakoda" loading="lazy" decoding="async" data-art="snack:onionpakoda" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Onion Pakoda</h3><p>Crunchy onion fritters, the monsoon's favourite companion.</p>
+        <div class="card__foot"><span class="price">₹50</span>
+        <div class="qty qty--sm" data-sq="onionpakoda"><button type="button" data-q="-1" aria-label="Decrease Onion Pakoda quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Onion Pakoda quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="onionpakoda"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Indian Snacks" style="--glow: #a76a2a;">
+      <div class="card__media"><span class="card__tag">Indian Snacks</span><img src="assets/images/snacks/mirchivada.jpg" alt="Mirchi Vada" loading="lazy" decoding="async" data-art="snack:mirchivada" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Mirchi Vada</h3><p>Jaipur-style green chilli stuffed with masala and fried in besan.</p>
+        <div class="card__foot"><span class="price">₹45</span>
+        <div class="qty qty--sm" data-sq="mirchivada"><button type="button" data-q="-1" aria-label="Decrease Mirchi Vada quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Mirchi Vada quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="mirchivada"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Indian Snacks" style="--glow: #a8702f;">
+      <div class="card__media"><span class="card__tag">Indian Snacks</span><img src="assets/images/snacks/vadapav.jpg" alt="Vada Pav" loading="lazy" decoding="async" data-art="snack:vadapav" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Vada Pav</h3><p>Mumbai's burger: a spicy potato vada in a soft pav with chutneys.</p>
+        <div class="card__foot"><span class="price">₹40</span>
+        <div class="qty qty--sm" data-sq="vadapav"><button type="button" data-q="-1" aria-label="Decrease Vada Pav quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Vada Pav quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="vadapav"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Indian Snacks" style="--glow: #d0a92d;">
+      <div class="card__media"><span class="card__tag">Indian Snacks</span><img src="assets/images/snacks/dhokla.jpg" alt="Dhokla" loading="lazy" decoding="async" data-art="snack:dhokla" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Dhokla</h3><p>Soft, steamed gram-flour cakes tempered with mustard and curry leaves.</p>
+        <div class="card__foot"><span class="price">₹60</span>
+        <div class="qty qty--sm" data-sq="dhokla"><button type="button" data-q="-1" aria-label="Decrease Dhokla quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Dhokla quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="dhokla"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Sandwiches" style="--glow: #caa45a;">
+      <div class="card__media"><span class="card__tag">Sandwiches</span><img src="assets/images/snacks/vegsandwich.jpg" alt="Veg Sandwich" loading="lazy" decoding="async" data-art="snack:vegsandwich" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Veg Sandwich</h3><p>Cucumber, tomato, beetroot and green chutney between toasted bread.</p>
+        <div class="card__foot"><span class="price">₹70</span>
+        <div class="qty qty--sm" data-sq="vegsandwich"><button type="button" data-q="-1" aria-label="Decrease Veg Sandwich quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Veg Sandwich quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="vegsandwich"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Sandwiches" style="--glow: #caa45a;">
+      <div class="card__media"><span class="card__tag">Sandwiches</span><img src="assets/images/snacks/cheesesandwich.jpg" alt="Cheese Sandwich" loading="lazy" decoding="async" data-art="snack:cheesesandwich" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Cheese Sandwich</h3><p>Grilled, golden and oozing with melted cheese.</p>
+        <div class="card__foot"><span class="price">₹90</span>
+        <div class="qty qty--sm" data-sq="cheesesandwich"><button type="button" data-q="-1" aria-label="Decrease Cheese Sandwich quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Cheese Sandwich quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="cheesesandwich"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Bakery" style="--glow: #b98536;">
+      <div class="card__media"><span class="card__tag">Bakery</span><img src="assets/images/snacks/garlicbread.jpg" alt="Garlic Bread" loading="lazy" decoding="async" data-art="snack:garlicbread" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Garlic Bread</h3><p>Toasted baguette slices glazed with garlic-herb butter.</p>
+        <div class="card__foot"><span class="price">₹80</span>
+        <div class="qty qty--sm" data-sq="garlicbread"><button type="button" data-q="-1" aria-label="Decrease Garlic Bread quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Garlic Bread quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="garlicbread"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Bakery" style="--glow: #2e160b;">
+      <div class="card__media"><span class="card__tag">Bakery</span><img src="assets/images/snacks/brownie.jpg" alt="Chocolate Brownie" loading="lazy" decoding="async" data-art="snack:brownie" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Chocolate Brownie</h3><p>Fudgy, dense chocolate brownie with a crackly top.</p>
+        <div class="card__foot"><span class="price">₹85</span>
+        <div class="qty qty--sm" data-sq="brownie"><button type="button" data-q="-1" aria-label="Decrease Chocolate Brownie quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Chocolate Brownie quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="brownie"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Bakery" style="--glow: #a8702f;">
+      <div class="card__media"><span class="card__tag">Bakery</span><img src="assets/images/snacks/cookies.jpg" alt="Cookies" loading="lazy" decoding="async" data-art="snack:cookies" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Cookies</h3><p>Buttery, crisp-edged cookies loaded with chocolate chips.</p>
+        <div class="card__foot"><span class="price">₹60</span>
+        <div class="qty qty--sm" data-sq="cookies"><button type="button" data-q="-1" aria-label="Decrease Cookies quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Cookies quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="cookies"><span>Add to Cart</span></button></div></article><article class="card card--snack" data-cat="Bakery" style="--glow: #bf823a;">
+      <div class="card__media"><span class="card__tag">Bakery</span><img src="assets/images/snacks/croissant.jpg" alt="Croissant" loading="lazy" decoding="async" data-art="snack:croissant" style="object-position:50% 50%"></div>
+      <div class="card__body"><h3>Croissant</h3><p>Flaky, buttery layers baked golden — lovely dunked in chai.</p>
+        <div class="card__foot"><span class="price">₹95</span>
+        <div class="qty qty--sm" data-sq="croissant"><button type="button" data-q="-1" aria-label="Decrease Croissant quantity">−</button><span>1</span><button type="button" data-q="1" aria-label="Increase Croissant quantity">+</button></div></div>
+        <button class="btn btn--primary btn--block btn--small" type="button" data-add-snack="croissant"><span>Add to Cart</span></button></div></article></div>
+      </div>
+    </section>
+
+    <!-- ============ 6. COMBOS ============ -->
+    <section class="section combos" id="combos">
+      <div class="container">
+        <header class="section__head section__head--light" data-reveal>
+          <p class="eyebrow eyebrow--light">Chai + Snacks Combos</p>
+          <h2 class="title">BETTER <em>TOGETHER.</em></h2>
+          <p class="section__sub">Classic pairings, priced lower than ordering them apart.</p>
+        </header>
+        <div class="combo-grid" id="comboGrid"><article class="ccard" data-combo="combo1" style="">
+      <span class="ccard__off">SAVE 15%</span>
+      <div class="ccard__art"><div class="combo-art"><div class="combo-art__a"><svg class="cup" viewBox="0 0 320 300" role="img" aria-label="Masala Chai" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="u2-liq-masala" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d79a54"></stop><stop offset="1" stop-color="#7e411a"></stop></linearGradient>
+        <linearGradient id="u2-clay-masala" x1="0" x2="1"><stop offset="0" stop-color="#8d4524"></stop><stop offset=".4" stop-color="#c77344"></stop><stop offset="1" stop-color="#6a331a"></stop></linearGradient>
+        <linearGradient id="u2-wood-masala" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a34"></stop><stop offset="1" stop-color="#4a2d18"></stop></linearGradient>
+        <radialGradient id="u2-glow-masala" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d79a54" stop-opacity=".55"></stop><stop offset="1" stop-color="#d79a54" stop-opacity="0"></stop></radialGradient>
+      </defs>
+      <circle cx="160" cy="150" r="140" fill="url(#u2-glow-masala)"></circle>
+      <ellipse cx="160" cy="262" rx="108" ry="22" fill="#000" opacity=".35"></ellipse>
+      <ellipse cx="160" cy="254" rx="100" ry="20" fill="url(#u2-wood-masala)"></ellipse>
+      <ellipse cx="160" cy="248" rx="100" ry="20" fill="#9c6a3e"></ellipse>
+      <ellipse cx="160" cy="248" rx="86" ry="15" fill="none" stroke="#6b4426" stroke-width="1.2" opacity=".7"></ellipse>
+      <ellipse cx="160" cy="248" rx="64" ry="10" fill="none" stroke="#6b4426" stroke-width="1" opacity=".6"></ellipse>
+      <clipPath id="u2-clip-masala"><path d="M110 120H210L199 238Q198 250 186 250H134Q122 250 121 238Z"></path></clipPath>
+      <path d="M110 120H210L199 238Q198 250 186 250H134Q122 250 121 238Z" fill="rgba(255,255,255,.08)"></path>
+      <g clip-path="url(#u2-clip-masala)">
+        <rect x="90" y="134" width="140" height="130" fill="url(#u2-liq-masala)"></rect>
+        <ellipse cx="160" cy="134" rx="50" ry="7" fill="#f2d9a9" opacity=".85"></ellipse>
+        <rect x="90" y="236" width="140" height="14" fill="#fff" opacity=".12"></rect>
+        <path d="M124 140L130 236" stroke="#fff" stroke-opacity=".3" stroke-width="7" stroke-linecap="round"></path>
+      </g>
+      <path d="M110 120H210L199 238Q198 250 186 250H134Q122 250 121 238Z" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2.2" stroke-linejoin="round"></path>
+      <ellipse cx="160" cy="120" rx="50" ry="8" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.7)" stroke-width="2"></ellipse>
+      
+      <g transform="translate(212 244) rotate(-14)"><rect width="66" height="11" rx="5.5" fill="#8a5129"></rect><path d="M5 3.5H60M7 8H58" stroke="#5e3416" stroke-width="1.4"></path></g>
+                <polygon points="96.0,232.0 98.3,240.6 105.9,236.1 101.4,243.7 110.0,246.0 101.4,248.3 105.9,255.9 98.3,251.4 96.0,260.0 93.7,251.4 86.1,255.9 90.6,248.3 82.0,246.0 90.6,243.7 86.1,236.1 93.7,240.6 " fill="#6b3a1c" stroke="#3f200d" stroke-width="1"></polygon><circle cx="96" cy="246" r="2.8000000000000003" fill="#2e1608"></circle>
+                <ellipse cx="130" cy="256" rx="5" ry="3" fill="#3b1e0e"></ellipse><ellipse cx="196" cy="258" rx="5" ry="3" fill="#3b1e0e"></ellipse>
+      <g>
+        <path class="wisp w1" d="M140 84 C 126 62, 154 46, 140 22"></path>
+        <path class="wisp w2" d="M162 80 C 148 58, 176 42, 162 18"></path>
+        <path class="wisp w3" d="M184 84 C 170 62, 198 46, 184 22"></path>
+      </g>
+    </svg></div><div class="combo-art__b"><svg class="snack" viewBox="0 0 320 300" role="img" aria-label="Samosa" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="u3-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9b85c"></stop><stop offset="1" stop-color="#b9772a"></stop></linearGradient>
+        <radialGradient id="u3-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#e9b85c" stop-opacity=".5"></stop><stop offset="1" stop-color="#e9b85c" stop-opacity="0"></stop></radialGradient>
+        <linearGradient id="u3-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a34"></stop><stop offset="1" stop-color="#4a2d18"></stop></linearGradient>
+      </defs>
+      <circle cx="160" cy="150" r="140" fill="url(#u3-glow)"></circle>
+      <ellipse cx="160" cy="262" rx="120" ry="20" fill="#000" opacity=".3"></ellipse>
+      <ellipse cx="160" cy="250" rx="124" ry="24" fill="url(#u3-wood)"></ellipse><ellipse cx="160" cy="244" rx="124" ry="24" fill="#9c6a3e"></ellipse>
+      <ellipse cx="160" cy="236" rx="104" ry="20" fill="#efe3cc" stroke="#cdbb98" stroke-width="2"></ellipse>
+      <g transform="translate(46 18) rotate(0 160 200) scale(0.82)"><path d="M160 104L246 218Q250 228 238 228H82Q70 228 74 218Z" fill="url(#u3-g)" stroke="#b9772a" stroke-width="2.5" stroke-linejoin="round"></path>
+          <path d="M160 104L246 218M160 104L74 218" stroke="rgba(255,235,170,.55)" stroke-width="3" fill="none"></path>
+          <path d="M90 220H230" stroke="rgba(90,45,10,.25)" stroke-width="3"></path><circle cx="139.7" cy="164.8" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="212.0" cy="176.1" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="179.0" cy="167.2" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="215.5" cy="179.3" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="145.2" cy="182.8" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="214.0" cy="198.9" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="143.5" cy="193.1" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="183.9" cy="151.2" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="207.9" cy="199.8" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="203.7" cy="161.0" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="128.2" cy="171.7" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="200.7" cy="192.4" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="196.1" cy="173.6" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="138.0" cy="199.2" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="112.4" cy="199.6" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="160.7" cy="185.6" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="133.4" cy="188.3" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="103.0" cy="175.9" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="137.6" cy="151.6" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="154.4" cy="161.7" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="212.4" cy="212.0" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="166.7" cy="162.3" r="2.2" fill="rgba(120,60,10,.45)"></circle></g><g transform="translate(-6 0) rotate(0 160 200) scale(1)"><path d="M160 104L246 218Q250 228 238 228H82Q70 228 74 218Z" fill="url(#u3-g)" stroke="#b9772a" stroke-width="2.5" stroke-linejoin="round"></path>
+          <path d="M160 104L246 218M160 104L74 218" stroke="rgba(255,235,170,.55)" stroke-width="3" fill="none"></path>
+          <path d="M90 220H230" stroke="rgba(90,45,10,.25)" stroke-width="3"></path><circle cx="139.7" cy="164.8" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="212.0" cy="176.1" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="179.0" cy="167.2" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="215.5" cy="179.3" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="145.2" cy="182.8" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="214.0" cy="198.9" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="143.5" cy="193.1" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="183.9" cy="151.2" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="207.9" cy="199.8" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="203.7" cy="161.0" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="128.2" cy="171.7" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="200.7" cy="192.4" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="196.1" cy="173.6" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="138.0" cy="199.2" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="112.4" cy="199.6" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="160.7" cy="185.6" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="133.4" cy="188.3" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="103.0" cy="175.9" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="137.6" cy="151.6" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="154.4" cy="161.7" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="212.4" cy="212.0" r="2.2" fill="rgba(120,60,10,.45)"></circle><circle cx="166.7" cy="162.3" r="2.2" fill="rgba(120,60,10,.45)"></circle></g>
+      <g><path class="wisp w1" d="M130 128C118 108 142 96 130 76"></path><path class="wisp w2" d="M164 122C152 102 176 90 164 70"></path><path class="wisp w3" d="M198 128C186 108 210 96 198 76"></path></g>
+    </svg></div></div></div>
+      <h3>Masala Chai <i>+</i> Samosa</h3>
+      <p class="ccard__price"><s>₹159</s><strong>₹135</strong></p>
+      <div class="ccard__act"><button class="btn btn--cream btn--small" type="button" data-add-combo="combo1"><span>Add combo</span></button><button class="link-btn" type="button" data-qv-combo="combo1">Quick view</button></div></article><article class="ccard" data-combo="combo2" style="">
+      <span class="ccard__off">SAVE 12%</span>
+      <div class="ccard__art"><div class="combo-art"><div class="combo-art__a"><svg class="cup" viewBox="0 0 320 300" role="img" aria-label="Adrak Chai" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="u4-liq-adrak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9a25c"></stop><stop offset="1" stop-color="#8a5120"></stop></linearGradient>
+        <linearGradient id="u4-clay-adrak" x1="0" x2="1"><stop offset="0" stop-color="#8d4524"></stop><stop offset=".4" stop-color="#c77344"></stop><stop offset="1" stop-color="#6a331a"></stop></linearGradient>
+        <linearGradient id="u4-wood-adrak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a34"></stop><stop offset="1" stop-color="#4a2d18"></stop></linearGradient>
+        <radialGradient id="u4-glow-adrak" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d9a25c" stop-opacity=".55"></stop><stop offset="1" stop-color="#d9a25c" stop-opacity="0"></stop></radialGradient>
+      </defs>
+      <circle cx="160" cy="150" r="140" fill="url(#u4-glow-adrak)"></circle>
+      <ellipse cx="160" cy="262" rx="108" ry="22" fill="#000" opacity=".35"></ellipse>
+      <ellipse cx="160" cy="254" rx="100" ry="20" fill="url(#u4-wood-adrak)"></ellipse>
+      <ellipse cx="160" cy="248" rx="100" ry="20" fill="#9c6a3e"></ellipse>
+      <ellipse cx="160" cy="248" rx="86" ry="15" fill="none" stroke="#6b4426" stroke-width="1.2" opacity=".7"></ellipse>
+      <ellipse cx="160" cy="248" rx="64" ry="10" fill="none" stroke="#6b4426" stroke-width="1" opacity=".6"></ellipse>
+      <clipPath id="u4-clip-adrak"><path d="M110 120H210L199 238Q198 250 186 250H134Q122 250 121 238Z"></path></clipPath>
+      <path d="M110 120H210L199 238Q198 250 186 250H134Q122 250 121 238Z" fill="rgba(255,255,255,.08)"></path>
+      <g clip-path="url(#u4-clip-adrak)">
+        <rect x="90" y="134" width="140" height="130" fill="url(#u4-liq-adrak)"></rect>
+        <ellipse cx="160" cy="134" rx="50" ry="7" fill="#f2d9a9" opacity=".85"></ellipse>
+        <rect x="90" y="236" width="140" height="14" fill="#fff" opacity=".12"></rect>
+        <path d="M124 140L130 236" stroke="#fff" stroke-opacity=".3" stroke-width="7" stroke-linecap="round"></path>
+      </g>
+      <path d="M110 120H210L199 238Q198 250 186 250H134Q122 250 121 238Z" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2.2" stroke-linejoin="round"></path>
+      <ellipse cx="160" cy="120" rx="50" ry="8" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.7)" stroke-width="2"></ellipse>
+      
+      <g transform="translate(236 244)"><ellipse rx="24" ry="9" fill="#e9c97f" stroke="#c99a45"></ellipse><ellipse rx="15" ry="5" fill="none" stroke="#c99a45" stroke-width="1"></ellipse></g>
+                <g transform="translate(88 248) rotate(-8)"><ellipse rx="22" ry="8" fill="#ecd08a" stroke="#c99a45"></ellipse><ellipse rx="13" ry="4.5" fill="none" stroke="#c99a45"></ellipse></g>
+                <path d="M62 236c8-10 20-6 24-14" stroke="#c99a45" stroke-width="9" stroke-linecap="round" fill="none" opacity=".0"></path>
+      <g>
+        <path class="wisp w1" d="M140 84 C 126 62, 154 46, 140 22"></path>
+        <path class="wisp w2" d="M162 80 C 148 58, 176 42, 162 18"></path>
+        <path class="wisp w3" d="M184 84 C 170 62, 198 46, 184 22"></path>
+      </g>
+    </svg></div><div class="combo-art__b"><svg class="snack" viewBox="0 0 320 300" role="img" aria-label="Kachori" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="u5-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8b663"></stop><stop offset="1" stop-color="#a9692a"></stop></linearGradient>
+        <radialGradient id="u5-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#e8b663" stop-opacity=".5"></stop><stop offset="1" stop-color="#e8b663" stop-opacity="0"></stop></radialGradient>
+        <linearGradient id="u5-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a34"></stop><stop offset="1" stop-color="#4a2d18"></stop></linearGradient>
+      </defs>
+      <circle cx="160" cy="150" r="140" fill="url(#u5-glow)"></circle>
+      <ellipse cx="160" cy="262" rx="120" ry="20" fill="#000" opacity=".3"></ellipse>
+      <ellipse cx="160" cy="250" rx="124" ry="24" fill="url(#u5-wood)"></ellipse><ellipse cx="160" cy="244" rx="124" ry="24" fill="#9c6a3e"></ellipse>
+      <ellipse cx="160" cy="236" rx="104" ry="20" fill="#efe3cc" stroke="#cdbb98" stroke-width="2"></ellipse>
+      <ellipse cx="160" cy="196" rx="76" ry="56" fill="url(#u5-g)" stroke="#a9692a" stroke-width="2.5"></ellipse>
+          <path d="M104 190Q160 130 216 190M114 208Q160 160 206 208M132 176Q160 156 188 176" fill="none" stroke="rgba(120,60,10,.35)" stroke-width="3" stroke-linecap="round"></path><circle cx="178.0" cy="224.2" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="135.7" cy="158.5" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="127.4" cy="212.3" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="123.4" cy="176.9" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="196.3" cy="177.8" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="174.3" cy="219.1" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="214.3" cy="192.6" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="135.8" cy="187.2" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="153.4" cy="197.9" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="130.8" cy="216.6" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="114.1" cy="214.0" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="104.7" cy="175.9" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="152.9" cy="194.4" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="171.4" cy="203.6" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="188.2" cy="180.4" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="200.5" cy="153.1" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="107.5" cy="183.4" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="204.0" cy="156.9" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="193.7" cy="202.2" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="202.5" cy="180.6" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="192.0" cy="214.6" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="172.4" cy="205.0" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="136.4" cy="222.7" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="192.2" cy="216.9" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="176.7" cy="188.8" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="189.2" cy="172.8" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="124.6" cy="191.1" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="126.5" cy="181.0" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="160.9" cy="222.4" r="2.4" fill="rgba(255,235,170,.55)"></circle><circle cx="149.2" cy="164.6" r="2.4" fill="rgba(255,235,170,.55)"></circle><g opacity=".95" transform="translate(70 30) rotate(0 160 200) scale(0.6)"><ellipse cx="160" cy="196" rx="70" ry="50" fill="url(#u5-g)" stroke="#a9692a" stroke-width="2.5"></ellipse></g>
+      <g><path class="wisp w1" d="M130 128C118 108 142 96 130 76"></path><path class="wisp w2" d="M164 122C152 102 176 90 164 70"></path><path class="wisp w3" d="M198 128C186 108 210 96 198 76"></path></g>
+    </svg></div></div></div>
+      <h3>Adrak Chai <i>+</i> Kachori</h3>
+      <p class="ccard__price"><s>₹154</s><strong>₹136</strong></p>
+      <div class="ccard__act"><button class="btn btn--cream btn--small" type="button" data-add-combo="combo2"><span>Add combo</span></button><button class="link-btn" type="button" data-qv-combo="combo2">Quick view</button></div></article><article class="ccard" data-combo="combo3" style="">
+      <span class="ccard__off">SAVE 18%</span>
+      <div class="ccard__art"><div class="combo-art"><div class="combo-art__a"><svg class="cup" viewBox="0 0 320 300" role="img" aria-label="Kesar Chai" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="u6-liq-kesar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0c46a"></stop><stop offset="1" stop-color="#b9731f"></stop></linearGradient>
+        <linearGradient id="u6-clay-kesar" x1="0" x2="1"><stop offset="0" stop-color="#8d4524"></stop><stop offset=".4" stop-color="#c77344"></stop><stop offset="1" stop-color="#6a331a"></stop></linearGradient>
+        <linearGradient id="u6-wood-kesar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a34"></stop><stop offset="1" stop-color="#4a2d18"></stop></linearGradient>
+        <radialGradient id="u6-glow-kesar" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f0c46a" stop-opacity=".55"></stop><stop offset="1" stop-color="#f0c46a" stop-opacity="0"></stop></radialGradient>
+      </defs>
+      <circle cx="160" cy="150" r="140" fill="url(#u6-glow-kesar)"></circle>
+      <ellipse cx="160" cy="262" rx="108" ry="22" fill="#000" opacity=".35"></ellipse>
+      <ellipse cx="160" cy="254" rx="100" ry="20" fill="url(#u6-wood-kesar)"></ellipse>
+      <ellipse cx="160" cy="248" rx="100" ry="20" fill="#9c6a3e"></ellipse>
+      <ellipse cx="160" cy="248" rx="86" ry="15" fill="none" stroke="#6b4426" stroke-width="1.2" opacity=".7"></ellipse>
+      <ellipse cx="160" cy="248" rx="64" ry="10" fill="none" stroke="#6b4426" stroke-width="1" opacity=".6"></ellipse>
+      <clipPath id="u6-clip-kesar"><path d="M110 120H210L199 238Q198 250 186 250H134Q122 250 121 238Z"></path></clipPath>
+      <path d="M110 120H210L199 238Q198 250 186 250H134Q122 250 121 238Z" fill="rgba(255,255,255,.08)"></path>
+      <g clip-path="url(#u6-clip-kesar)">
+        <rect x="90" y="134" width="140" height="130" fill="url(#u6-liq-kesar)"></rect>
+        <ellipse cx="160" cy="134" rx="50" ry="7" fill="#f2d9a9" opacity=".85"></ellipse>
+        <rect x="90" y="236" width="140" height="14" fill="#fff" opacity=".12"></rect>
+        <path d="M124 140L130 236" stroke="#fff" stroke-opacity=".3" stroke-width="7" stroke-linecap="round"></path>
+      </g>
+      <path d="M110 120H210L199 238Q198 250 186 250H134Q122 250 121 238Z" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2.2" stroke-linejoin="round"></path>
+      <ellipse cx="160" cy="120" rx="50" ry="8" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.7)" stroke-width="2"></ellipse>
+      <g stroke="#d6361e" stroke-width="1.8" stroke-linecap="round" fill="none"><path d="M146 134q6-6 12 0M162 133q6-7 12-1M154 137q4-6 10-2"></path></g>
+      <ellipse cx="232" cy="256" rx="26" ry="7" fill="#7a5320"></ellipse><ellipse cx="232" cy="253" rx="26" ry="7" fill="#e3b86a"></ellipse>
+                <g stroke="#d6361e" stroke-width="2" stroke-linecap="round" fill="none">
+                  <path d="M222 252q6-8 12-2M230 252q4-9 12-4M226 250q-4-8 2-9"></path>
+                  <path d="M96 252q8-6 16 0M104 258q8-8 14 0M88 258q4-8 12-6"></path>
+                </g>
+      <g>
+        <path class="wisp w1" d="M140 84 C 126 62, 154 46, 140 22"></path>
+        <path class="wisp w2" d="M162 80 C 148 58, 176 42, 162 18"></path>
+        <path class="wisp w3" d="M184 84 C 170 62, 198 46, 184 22"></path>
+      </g>
+    </svg></div><div class="combo-art__b"><svg class="snack" viewBox="0 0 320 300" role="img" aria-label="Cookies" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="u7-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9a86a"></stop><stop offset="1" stop-color="#a8702f"></stop></linearGradient>
+        <radialGradient id="u7-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d9a86a" stop-opacity=".5"></stop><stop offset="1" stop-color="#d9a86a" stop-opacity="0"></stop></radialGradient>
+        <linearGradient id="u7-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a34"></stop><stop offset="1" stop-color="#4a2d18"></stop></linearGradient>
+      </defs>
+      <circle cx="160" cy="150" r="140" fill="url(#u7-glow)"></circle>
+      <ellipse cx="160" cy="262" rx="120" ry="20" fill="#000" opacity=".3"></ellipse>
+      <ellipse cx="160" cy="250" rx="124" ry="24" fill="url(#u7-wood)"></ellipse><ellipse cx="160" cy="244" rx="124" ry="24" fill="#9c6a3e"></ellipse>
+      <ellipse cx="160" cy="236" rx="104" ry="20" fill="#efe3cc" stroke="#cdbb98" stroke-width="2"></ellipse>
+      <g transform="rotate(-6 112 196)"><circle cx="112" cy="196" r="52" fill="url(#u7-g)" stroke="#a8702f" stroke-width="2.4"></circle><circle cx="102" cy="182" r="31.2" fill="rgba(255,255,255,.14)"></circle><circle cx="96.8" cy="188.6" r="5" fill="#3a1d0e"></circle><circle cx="85.6" cy="175.3" r="5" fill="#3a1d0e"></circle><circle cx="127.4" cy="176.7" r="5" fill="#3a1d0e"></circle><circle cx="107.1" cy="200.3" r="5" fill="#3a1d0e"></circle><circle cx="117.3" cy="196.1" r="5" fill="#3a1d0e"></circle><circle cx="102.3" cy="208.7" r="5" fill="#3a1d0e"></circle><circle cx="133.0" cy="197.5" r="5" fill="#3a1d0e"></circle><circle cx="148.3" cy="209.3" r="5" fill="#3a1d0e"></circle><circle cx="108.8" cy="219.4" r="5" fill="#3a1d0e"></circle></g><g transform="rotate(8 196 188)"><circle cx="196" cy="188" r="56" fill="url(#u7-g)" stroke="#a8702f" stroke-width="2.4"></circle><circle cx="186" cy="174" r="33.6" fill="rgba(255,255,255,.14)"></circle><circle cx="195.2" cy="192.1" r="5" fill="#3a1d0e"></circle><circle cx="165.9" cy="170.8" r="5" fill="#3a1d0e"></circle><circle cx="191.5" cy="188.4" r="5" fill="#3a1d0e"></circle><circle cx="163.0" cy="213.5" r="5" fill="#3a1d0e"></circle><circle cx="203.0" cy="182.0" r="5" fill="#3a1d0e"></circle><circle cx="179.1" cy="206.9" r="5" fill="#3a1d0e"></circle><circle cx="208.3" cy="159.5" r="5" fill="#3a1d0e"></circle><circle cx="195.9" cy="170.2" r="5" fill="#3a1d0e"></circle><circle cx="209.5" cy="165.0" r="5" fill="#3a1d0e"></circle></g><g transform="rotate(0 156 238)"><circle cx="156" cy="238" r="50" fill="url(#u7-g)" stroke="#a8702f" stroke-width="2.4"></circle><circle cx="146" cy="224" r="30" fill="rgba(255,255,255,.14)"></circle><circle cx="169.3" cy="252.4" r="5" fill="#3a1d0e"></circle><circle cx="127.5" cy="227.1" r="5" fill="#3a1d0e"></circle><circle cx="133.2" cy="257.4" r="5" fill="#3a1d0e"></circle><circle cx="171.7" cy="219.4" r="5" fill="#3a1d0e"></circle><circle cx="163.4" cy="227.2" r="5" fill="#3a1d0e"></circle><circle cx="135.2" cy="259.5" r="5" fill="#3a1d0e"></circle><circle cx="157.9" cy="245.8" r="5" fill="#3a1d0e"></circle><circle cx="190.8" cy="253.5" r="5" fill="#3a1d0e"></circle><circle cx="183.1" cy="234.4" r="5" fill="#3a1d0e"></circle></g>
+      <g><path class="wisp w1" d="M130 128C118 108 142 96 130 76"></path><path class="wisp w2" d="M164 122C152 102 176 90 164 70"></path><path class="wisp w3" d="M198 128C186 108 210 96 198 76"></path></g>
+    </svg></div></div></div>
+      <h3>Kesar Chai <i>+</i> Cookies</h3>
+      <p class="ccard__price"><s>₹249</s><strong>₹204</strong></p>
+      <div class="ccard__act"><button class="btn btn--cream btn--small" type="button" data-add-combo="combo3"><span>Add combo</span></button><button class="link-btn" type="button" data-qv-combo="combo3">Quick view</button></div></article><article class="ccard" data-combo="combo4" style="">
+      <span class="ccard__off">SAVE 15%</span>
+      <div class="ccard__art"><div class="combo-art"><div class="combo-art__a"><svg class="cup" viewBox="0 0 320 300" role="img" aria-label="Kulhad Chai" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="u8-liq-kulhad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cf8f4f"></stop><stop offset="1" stop-color="#7a421b"></stop></linearGradient>
+        <linearGradient id="u8-clay-kulhad" x1="0" x2="1"><stop offset="0" stop-color="#8d4524"></stop><stop offset=".4" stop-color="#c77344"></stop><stop offset="1" stop-color="#6a331a"></stop></linearGradient>
+        <linearGradient id="u8-wood-kulhad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a34"></stop><stop offset="1" stop-color="#4a2d18"></stop></linearGradient>
+        <radialGradient id="u8-glow-kulhad" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#cf8f4f" stop-opacity=".55"></stop><stop offset="1" stop-color="#cf8f4f" stop-opacity="0"></stop></radialGradient>
+      </defs>
+      <circle cx="160" cy="150" r="140" fill="url(#u8-glow-kulhad)"></circle>
+      <ellipse cx="160" cy="262" rx="108" ry="22" fill="#000" opacity=".35"></ellipse>
+      <ellipse cx="160" cy="254" rx="100" ry="20" fill="url(#u8-wood-kulhad)"></ellipse>
+      <ellipse cx="160" cy="248" rx="100" ry="20" fill="#9c6a3e"></ellipse>
+      <ellipse cx="160" cy="248" rx="86" ry="15" fill="none" stroke="#6b4426" stroke-width="1.2" opacity=".7"></ellipse>
+      <ellipse cx="160" cy="248" rx="64" ry="10" fill="none" stroke="#6b4426" stroke-width="1" opacity=".6"></ellipse>
+      <path d="M102 124C108 172 120 216 130 240Q134 248 146 248H174Q186 248 190 240C200 216 212 172 218 124Z" fill="url(#u8-clay-kulhad)"></path>
+        <path d="M110 150H210M114 172H206M120 196H200M126 220H194" stroke="#4d2411" stroke-opacity=".28" stroke-width="1.6"></path>
+        <path d="M114 134C118 176 126 210 134 234" stroke="#fff" stroke-opacity=".16" stroke-width="6" stroke-linecap="round" fill="none"></path>
+        <ellipse cx="160" cy="122" rx="58" ry="10" fill="#6a331a"></ellipse>
+        <ellipse cx="160" cy="124" rx="52" ry="7.5" fill="url(#u8-liq-kulhad)"></ellipse>
+        <ellipse cx="150" cy="122.5" rx="30" ry="3" fill="#fff" opacity=".28"></ellipse>
+      <ellipse cx="236" cy="256" rx="30" ry="7" fill="#7d3a1f"></ellipse><ellipse cx="236" cy="253" rx="30" ry="7" fill="#b5623a"></ellipse>
+                <path d="M90 250c8-6 18-4 22 3-8 6-18 5-22-3z" fill="#4d6b2a"></path><path d="M110 258c8-5 16-2 19 4-7 5-16 3-19-4z" fill="#3c5520"></path>
+      <g>
+        <path class="wisp w1" d="M140 84 C 126 62, 154 46, 140 22"></path>
+        <path class="wisp w2" d="M162 80 C 148 58, 176 42, 162 18"></path>
+        <path class="wisp w3" d="M184 84 C 170 62, 198 46, 184 22"></path>
+      </g>
+    </svg></div><div class="combo-art__b"><svg class="snack" viewBox="0 0 320 300" role="img" aria-label="Bread Pakoda" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="u9-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9b85c"></stop><stop offset="1" stop-color="#b0702a"></stop></linearGradient>
+        <radialGradient id="u9-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#e9b85c" stop-opacity=".5"></stop><stop offset="1" stop-color="#e9b85c" stop-opacity="0"></stop></radialGradient>
+        <linearGradient id="u9-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a34"></stop><stop offset="1" stop-color="#4a2d18"></stop></linearGradient>
+      </defs>
+      <circle cx="160" cy="150" r="140" fill="url(#u9-glow)"></circle>
+      <ellipse cx="160" cy="262" rx="120" ry="20" fill="#000" opacity=".3"></ellipse>
+      <ellipse cx="160" cy="250" rx="124" ry="24" fill="url(#u9-wood)"></ellipse><ellipse cx="160" cy="244" rx="124" ry="24" fill="#9c6a3e"></ellipse>
+      <ellipse cx="160" cy="236" rx="104" ry="20" fill="#efe3cc" stroke="#cdbb98" stroke-width="2"></ellipse>
+      <g transform="translate(50 12) rotate(8 160 200) scale(0.82)"><path d="M92 214L160 112L228 214Z" fill="#f2dca8" stroke="#b0702a" stroke-width="2.5" stroke-linejoin="round"></path><path d="M104 208L160 128L216 208Z" fill="url(#u9-g)" opacity=".95"></path><path d="M118 198L160 140L202 198Z" fill="#cf9a3e" opacity=".55"></path></g><g transform="translate(-4 6) rotate(-6 160 200) scale(1)"><path d="M92 214L160 112L228 214Z" fill="#f2dca8" stroke="#b0702a" stroke-width="2.5" stroke-linejoin="round"></path><path d="M104 208L160 128L216 208Z" fill="url(#u9-g)" opacity=".95"></path><path d="M118 198L160 140L202 198Z" fill="#cf9a3e" opacity=".55"></path></g><circle cx="147.5" cy="212.9" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="163.4" cy="206.7" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="167.1" cy="171.1" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="92.9" cy="152.7" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="227.6" cy="176.6" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="106.4" cy="201.5" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="161.4" cy="210.1" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="103.8" cy="191.3" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="200.0" cy="176.5" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="119.7" cy="166.6" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="118.8" cy="196.2" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="214.5" cy="205.4" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="154.5" cy="213.5" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="179.1" cy="218.4" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="196.6" cy="151.5" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="172.5" cy="214.0" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="191.4" cy="203.5" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="192.9" cy="206.1" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="220.2" cy="195.5" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="202.5" cy="178.7" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="110.2" cy="150.7" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="204.5" cy="185.4" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="118.9" cy="171.4" r="2.2" fill="rgba(255,235,170,.5)"></circle><circle cx="135.1" cy="176.6" r="2.2" fill="rgba(255,235,170,.5)"></circle>
+      <g><path class="wisp w1" d="M130 128C118 108 142 96 130 76"></path><path class="wisp w2" d="M164 122C152 102 176 90 164 70"></path><path class="wisp w3" d="M198 128C186 108 210 96 198 76"></path></g>
+    </svg></div></div></div>
+      <h3>Kulhad Chai <i>+</i> Bread Pakoda</h3>
+      <p class="ccard__price"><s>₹139</s><strong>₹118</strong></p>
+      <div class="ccard__act"><button class="btn btn--cream btn--small" type="button" data-add-combo="combo4"><span>Add combo</span></button><button class="link-btn" type="button" data-qv-combo="combo4">Quick view</button></div></article><article class="ccard" data-combo="combo5" style="">
+      <span class="ccard__off">SAVE 10%</span>
+      <div class="ccard__art"><div class="combo-art"><div class="combo-art__a"><svg class="cup" viewBox="0 0 320 300" role="img" aria-label="Cutting Chai" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="u10-liq-cutting" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4974f"></stop><stop offset="1" stop-color="#85481c"></stop></linearGradient>
+        <linearGradient id="u10-clay-cutting" x1="0" x2="1"><stop offset="0" stop-color="#8d4524"></stop><stop offset=".4" stop-color="#c77344"></stop><stop offset="1" stop-color="#6a331a"></stop></linearGradient>
+        <linearGradient id="u10-wood-cutting" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a34"></stop><stop offset="1" stop-color="#4a2d18"></stop></linearGradient>
+        <radialGradient id="u10-glow-cutting" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d4974f" stop-opacity=".55"></stop><stop offset="1" stop-color="#d4974f" stop-opacity="0"></stop></radialGradient>
+      </defs>
+      <circle cx="160" cy="150" r="140" fill="url(#u10-glow-cutting)"></circle>
+      <ellipse cx="160" cy="262" rx="108" ry="22" fill="#000" opacity=".35"></ellipse>
+      <ellipse cx="160" cy="254" rx="100" ry="20" fill="url(#u10-wood-cutting)"></ellipse>
+      <ellipse cx="160" cy="248" rx="100" ry="20" fill="#9c6a3e"></ellipse>
+      <ellipse cx="160" cy="248" rx="86" ry="15" fill="none" stroke="#6b4426" stroke-width="1.2" opacity=".7"></ellipse>
+      <ellipse cx="160" cy="248" rx="64" ry="10" fill="none" stroke="#6b4426" stroke-width="1" opacity=".6"></ellipse>
+      <clipPath id="u10-clip-cutting"><path d="M124 154H196L189 238Q188 248 178 248H142Q132 248 131 238Z"></path></clipPath>
+      <path d="M124 154H196L189 238Q188 248 178 248H142Q132 248 131 238Z" fill="rgba(255,255,255,.08)"></path>
+      <g clip-path="url(#u10-clip-cutting)">
+        <rect x="90" y="164" width="140" height="130" fill="url(#u10-liq-cutting)"></rect>
+        <ellipse cx="160" cy="164" rx="36" ry="7" fill="#f2d9a9" opacity=".85"></ellipse>
+        <rect x="90" y="236" width="140" height="14" fill="#fff" opacity=".12"></rect>
+        <path d="M134 170L138 236" stroke="#fff" stroke-opacity=".3" stroke-width="7" stroke-linecap="round"></path>
+      </g>
+      <path d="M124 154H196L189 238Q188 248 178 248H142Q132 248 131 238Z" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2.2" stroke-linejoin="round"></path>
+      <ellipse cx="160" cy="154" rx="36" ry="8" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.7)" stroke-width="2"></ellipse>
+      
+      <g transform="translate(210 240) rotate(-6)"><rect width="58" height="22" rx="5" fill="#d5a867" stroke="#a9772f"></rect><g fill="#a9772f" opacity=".7"><circle cx="10" cy="7" r="1.4"></circle><circle cx="22" cy="14" r="1.4"></circle><circle cx="36" cy="7" r="1.4"></circle><circle cx="48" cy="14" r="1.4"></circle></g></g>
+                <g transform="translate(78 246) rotate(8)"><rect width="46" height="18" rx="5" fill="#e0b777" stroke="#a9772f"></rect></g>
+      <g>
+        <path class="wisp w1" d="M140 96 C 126 74, 154 58, 140 34"></path>
+        <path class="wisp w2" d="M162 92 C 148 70, 176 54, 162 30"></path>
+        <path class="wisp w3" d="M184 96 C 170 74, 198 58, 184 34"></path>
+      </g>
+    </svg></div><div class="combo-art__b"><svg class="snack" viewBox="0 0 320 300" role="img" aria-label="Vada Pav" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="u11-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dca868"></stop><stop offset="1" stop-color="#a8702f"></stop></linearGradient>
+        <radialGradient id="u11-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#dca868" stop-opacity=".5"></stop><stop offset="1" stop-color="#dca868" stop-opacity="0"></stop></radialGradient>
+        <linearGradient id="u11-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5a34"></stop><stop offset="1" stop-color="#4a2d18"></stop></linearGradient>
+      </defs>
+      <circle cx="160" cy="150" r="140" fill="url(#u11-glow)"></circle>
+      <ellipse cx="160" cy="262" rx="120" ry="20" fill="#000" opacity=".3"></ellipse>
+      <ellipse cx="160" cy="250" rx="124" ry="24" fill="url(#u11-wood)"></ellipse><ellipse cx="160" cy="244" rx="124" ry="24" fill="#9c6a3e"></ellipse>
+      <ellipse cx="160" cy="236" rx="104" ry="20" fill="#efe3cc" stroke="#cdbb98" stroke-width="2"></ellipse>
+      <ellipse cx="160" cy="226" rx="94" ry="26" fill="#d29a55" stroke="#9a6325" stroke-width="2.5"></ellipse>
+          <ellipse cx="160" cy="206" rx="88" ry="30" fill="#e0ad68" stroke="#9a6325" stroke-width="2"></ellipse>
+          <ellipse cx="160" cy="196" rx="52" ry="40" fill="url(#u11-g)" stroke="#a8702f" stroke-width="2.5"></ellipse><circle cx="156.6" cy="210.0" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="147.8" cy="169.7" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="159.8" cy="193.7" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="163.4" cy="169.0" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="179.5" cy="192.9" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="173.7" cy="212.4" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="131.7" cy="224.0" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="180.3" cy="222.0" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="141.6" cy="185.5" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="152.3" cy="220.5" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="173.0" cy="218.3" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="154.2" cy="190.2" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="179.8" cy="177.9" r="2" fill="rgba(255,235,170,.5)"></circle><circle cx="180.1" cy="201.2" r="2" fill="rgba(255,235,170,.5)"></circle>
+          <path d="M96 196Q112 176 130 178" fill="none" stroke="#5f7a3c" stroke-width="8" stroke-linecap="round"></path><path d="M224 192Q208 174 192 178" fill="none" stroke="#b8321c" stroke-width="7" stroke-linecap="round"></path>
+          <path d="M70 170Q160 70 250 170Q250 186 160 186Q70 186 70 170Z" fill="#e6b36e" stroke="#9a6325" stroke-width="2.5"></path><circle cx="183.5" cy="155.5" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="109.5" cy="135.3" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="119.6" cy="159.5" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="187.8" cy="129.1" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="173.1" cy="135.4" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="123.1" cy="161.2" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="163.3" cy="150.2" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="221.7" cy="156.4" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="208.1" cy="141.1" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="151.5" cy="138.9" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="172.8" cy="166.2" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="167.9" cy="163.3" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="193.6" cy="159.1" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="191.5" cy="133.0" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="167.9" cy="147.7" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="207.0" cy="130.9" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="195.4" cy="120.6" r="2.2" fill="rgba(255,240,200,.65)"></circle><circle cx="125.5" cy="158.3" r="2.2" fill="rgba(255,240,200,.65)"></circle>
+      <g><path class="wisp w1" d="M130 128C118 108 142 96 130 76"></path><path class="wisp w2" d="M164 122C152 102 176 90 164 70"></path><path class="wisp w3" d="M198 128C186 108 210 96 198 76"></path></g>
+    </svg></div></div></div>
+      <h3>Cutting Chai <i>+</i> Vada Pav</h3>
+      <p class="ccard__price"><s>₹119</s><strong>₹107</strong></p>
+      <div class="ccard__act"><button class="btn btn--cream btn--small" type="button" data-add-combo="combo5"><span>Add combo</span></button><button class="link-btn" type="button" data-qv-combo="combo5">Quick view</button></div></article></div>
+      </div>
+    </section>
+
+    <!-- ============ 8. ABOUT ============ -->
+    <section class="section about" id="about">
+      <div class="about__float" id="aboutFloat" aria-hidden="true"></div>
+      <div class="container">
+        <div class="about__top">
+          <div class="about__text">
+            <p class="eyebrow" data-reveal>About Our Chai</p>
+            <h2 class="title" data-reveal>NOT JUST CHAI. <em>IT'S AN EMOTION.</em></h2>
+            <p class="lead" data-reveal>From railway platforms at dawn to rooftop evenings in the monsoon, chai is the reason people sit a little longer.</p>
+            <div class="stats" data-reveal>
+              <div><strong data-count="8">0</strong><span>Signature chai</span></div>
+              <div><strong data-count="3">0</strong><span>Generations of recipes</span></div>
+              <div><strong data-count="100" data-suffix="%">0</strong><span>Natural spices</span></div>
+            </div>
+          </div>
+          <div class="about__photo" data-reveal="scale">
+            <div class="about__frame" data-parallax="-40"><img src="images/chai-glass.jpg" alt="A glass of hot masala chai next to a steel kettle" width="230" height="160" loading="lazy"></div>
+            <div class="about__badge" aria-hidden="true">
+              <svg viewBox="0 0 120 120"><defs><path id="aboutPath" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text><textPath href="#aboutPath">SLOW BREWED • HAND CRAFTED • SINCE FOREVER •</textPath></text><circle cx="60" cy="60" r="6" fill="currentColor"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__cards">
+          <article class="acard" data-reveal><span class="acard__n">01</span><h3>Indian Chai Culture</h3><p>Chai is how India says welcome, sorry, congratulations and “stay a while”. We brew for that feeling.</p></article>
+          <article class="acard" data-reveal><span class="acard__n">02</span><h3>Fresh Ingredients</h3><p>Ginger crushed daily, cardamom pounded in the pot, farm-fresh milk — nothing from a premix.</p></article>
+          <article class="acard" data-reveal><span class="acard__n">03</span><h3>Traditional Recipes</h3><p>Family recipes, passed down and perfected over a thousand pots. We boil it twice, the old way.</p></article>
+          <article class="acard" data-reveal><span class="acard__n">04</span><h3>Authentic Flavours</h3><p>Bold, spiced and milky. The cup that tastes like a kitchen you remember.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 9. REVIEWS ============ -->
+    <section class="section reviews" id="reviews">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="eyebrow">Customer Experience</p>
+          <h2 class="title">WORDS OVER <em>WARM CUPS.</em></h2>
+        </header>
+        <div class="slider" data-reveal>
+          <div class="slider__viewport" id="revViewport"><div class="slider__track" id="revTrack"></div></div>
+          <div class="slider__controls">
+            <button class="round-btn" id="revPrev" type="button" aria-label="Previous review"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="slider__dots" id="revDots"></div>
+            <button class="round-btn" id="revNext" type="button" aria-label="Next review"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <section class="section contact" id="contact">
+      <div class="container contact__grid">
+        <div class="contact__info" data-reveal>
+          <p class="eyebrow">Contact</p>
+          <h2 class="title">LET'S SHARE <em>A CUP.</em></h2>
+          <p class="lead">Questions, catering, collaborations or just a hello — we'd love to hear from you.</p>
+          <ul class="info">
+            <li><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span>21, Spice Market Lane, Jaipur, Rajasthan 302001</span></li>
+            <li><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 7l9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><a href="mailto:hello@chaiculture.in">hello@chaiculture.in</a></li>
+            <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Open daily · 7:00 AM – 11:00 PM</span></li>
+          </ul>
+          <div class="social" aria-label="Social media">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></a>
+          </div>
+        </div>
+
+        <form class="form" id="contactForm" novalidate data-reveal>
+          <div class="field"><input id="fName" name="name" type="text" placeholder=" " autocomplete="name" required><label for="fName">Name</label><small class="err" aria-live="polite"></small></div>
+          <div class="field"><input id="fEmail" name="email" type="email" placeholder=" " autocomplete="email" required><label for="fEmail">Email</label><small class="err" aria-live="polite"></small></div>
+          <div class="field"><input id="fPhone" name="phone" type="tel" placeholder=" " autocomplete="tel" required><label for="fPhone">Phone</label><small class="err" aria-live="polite"></small></div>
+          <div class="field"><textarea id="fMsg" name="message" rows="4" placeholder=" " required></textarea><label for="fMsg">Message</label><small class="err" aria-live="polite"></small></div>
+          <button type="submit" class="btn btn--primary btn--large magnetic" id="formBtn"><span>Submit</span></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <a href="#home" data-nav class="footer__logo">CHAI <b>FACTORY</b></a>
+        <p>Your chai. Your way. Brewed slowly, poured with love.</p>
+        <p class="footer__hours">Open daily · 7:00 AM – 11:00 PM</p>
+      </div>
+      <nav aria-label="Quick links">
+        <h4>Explore</h4>
+        <a href="#studio" data-nav>Make Your Chai</a><a href="#menu" data-nav>Chai Menu</a><a href="#snacks" data-nav>Snacks</a><a href="#combos" data-nav>Combos</a><a href="#about" data-nav>About</a><a href="#contact" data-nav>Contact</a>
+      </nav>
+      <div>
+        <h4>Follow</h4>
+        <div class="social social--footer">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bar"><p>© <span id="year">2026</span> Chai Factory. All rights reserved.</p><p>Made with ♥ and a lot of cardamom.</p></div>
+  </footer>
+
+  <!-- ============ CART DRAWER ============ -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Shopping cart">
+    <div class="drawer__head"><h3>Your Cart</h3><button class="round-btn" id="drawerClose" type="button" aria-label="Close cart"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button></div>
+    <div class="drawer__body" id="cartItems"></div>
+    <div class="drawer__foot">
+      <dl class="sum" id="cartSum"></dl>
+      <button class="btn btn--primary btn--large" id="checkoutBtn" type="button"><span>Checkout</span></button>
+    </div>
+  </aside>
+
+  <!-- ============ QUICK VIEW MODAL ============ -->
+  <div class="modal" id="quickView" role="dialog" aria-modal="true" aria-labelledby="qvTitle" hidden>
+    <div class="modal__box modal__box--wide">
+      <button class="round-btn modal__close" type="button" data-close aria-label="Close"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+      <div class="qv" id="qvBody"></div>
+    </div>
+  </div>
+
+  <!-- ============ CHECKOUT MODAL ============ -->
+  <div class="modal" id="checkout" role="dialog" aria-modal="true" aria-labelledby="coTitle" hidden>
+    <div class="modal__box">
+      <button class="round-btn modal__close" type="button" data-close aria-label="Close"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+      <div id="coBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="script.js" onerror="var t=document.querySelector('.loader__text');if(t){t.textContent='script.js not found - keep index.html, style.css and script.js in ONE folder with exactly these names';}"></script>
+</body>
+</html>

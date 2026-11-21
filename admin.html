@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Chai Factory Admin</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,sans-serif;background:#1c110b;color:#f6ead8}
+header{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:14px 18px;background:#2a1a10;position:sticky;top:0}
+h1{font-size:18px;margin:0}main{max-width:980px;margin:0 auto;padding:16px}
+button,select,input{font:inherit;border-radius:8px;border:1px solid #6b4a30;background:#3a2517;color:inherit;padding:8px 12px}button{cursor:pointer;background:#c98a4b;color:#2a1a10;font-weight:700;border:0}
+.tabs{display:flex;gap:8px;margin-bottom:14px}.tabs button{background:#3a2517;color:#f6ead8}.tabs button.on{background:#c98a4b;color:#2a1a10}
+.card{background:#2a1a10;border:1px solid #4a3020;border-radius:12px;padding:14px;margin-bottom:12px}
+.row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}.muted{color:#b99d82;font-size:13px}
+.badge{padding:2px 10px;border-radius:99px;background:#4a3020;font-size:12px}.new{background:#c0392b}.preparing{background:#b9770e}.out{background:#2471a3}.delivered{background:#1e8449}.cancelled{background:#555}
+ul{margin:8px 0;padding-left:18px}#login{max-width:340px;margin:18vh auto;text-align:center}#login input{width:100%;margin:10px 0}
+</style></head><body>
+<div id="login"><h1>Chai Factory Admin</h1><input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="go" style="width:100%">Login</button><p class="muted" id="err"></p></div>
+<div id="app" hidden><header><h1>☕ Chai Factory Admin</h1><div><button id="refresh">Refresh</button> <button id="out" style="background:#3a2517;color:#f6ead8">Logout</button></div></header>
+<main><div class="tabs"><button id="tO" class="on">Orders <span id="cO"></span></button><button id="tM">Messages <span id="cM"></span></button></div><div id="list"></div></main></div>
+<script>
+var T=null,tab='o',esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+try{T=sessionStorage.getItem('cfAdmin')}catch(e){}
+function api(p,o){o=o||{};o.headers=Object.assign({'Content-Type':'application/json',Authorization:'Bearer '+T},o.headers);return fetch(p,o).then(function(r){if(r.status===401){logout();throw 0}return r.json()})}
+function logout(){T=null;try{sessionStorage.removeItem('cfAdmin')}catch(e){}document.getElementById('app').hidden=true;document.getElementById('login').hidden=false}
+function show(){document.getElementById('login').hidden=true;document.getElementById('app').hidden=false;load()}
+document.getElementById('go').onclick=function(){fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.getElementById('pw').value})}).then(function(r){return r.json()}).then(function(d){if(d.token){T=d.token;try{sessionStorage.setItem('cfAdmin',T)}catch(e){}show()}else document.getElementById('err').textContent=d.error||'Error'})};
+document.getElementById('pw').onkeydown=function(e){if(e.key==='Enter')document.getElementById('go').click()};
+document.getElementById('out').onclick=logout;document.getElementById('refresh').onclick=load;
+document.getElementById('tO').onclick=function(){tab='o';load()};document.getElementById('tM').onclick=function(){tab='m';load()};
+function load(){
+ document.getElementById('tO').className=tab==='o'?'on':'';document.getElementById('tM').className=tab==='m'?'on':'';
+ Promise.all([api('/api/admin/orders'),api('/api/admin/messages')]).then(function(r){
+  var O=r[0],M=r[1];document.getElementById('cO').textContent='('+O.length+')';document.getElementById('cM').textContent='('+M.length+')';
+  var L=document.getElementById('list');
+  if(tab==='o'){L.innerHTML=O.length?O.map(function(o){return '<div class="card"><div class="row"><b>'+esc(o.id)+' &middot; &#8377;'+o.total+'</b><span class="badge '+o.status+'">'+esc(o.status)+'</span></div><div class="muted">'+new Date(o.createdAt).toLocaleString()+' &middot; '+esc(o.pay.toUpperCase())+'</div><div><b>'+esc(o.name)+'</b> &middot; <a style="color:#e8b86d" href="tel:'+esc(o.phone)+'">'+esc(o.phone)+'</a></div><div class="muted">'+esc(o.address)+'</div><ul>'+o.items.map(function(i){return '<li>'+i.qty+' &times; '+esc(i.name)+(i.meta?' <span class="muted">('+esc(i.meta)+')</span>':'')+'</li>'}).join('')+'</ul><select data-id="'+esc(o.id)+'">'+['new','preparing','out','delivered','cancelled'].map(function(s){return '<option value="'+s+'"'+(s===o.status?' selected':'')+'>'+({out:'out for delivery'}[s]||s)+'</option>'}).join('')+'</select></div>'}).join(''):'<p class="muted">No orders yet.</p>';
+   Array.prototype.forEach.call(L.querySelectorAll('select'),function(s){s.onchange=function(){api('/api/admin/orders/'+s.dataset.id,{method:'PATCH',body:JSON.stringify({status:s.value})}).then(load)}})}
+  else L.innerHTML=M.length?M.map(function(m){return '<div class="card"><div class="row"><b>'+esc(m.name)+'</b><span class="muted">'+new Date(m.createdAt).toLocaleString()+'</span></div><div class="muted">'+esc(m.email)+' &middot; '+esc(m.phone)+'</div><p>'+esc(m.message)+'</p></div>'}).join(''):'<p class="muted">No messages yet.</p>'
+ }).catch(function(){})}
+if(T)show();
+</script></body></html>
