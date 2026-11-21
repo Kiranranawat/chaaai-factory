@@ -1,12 +1,12 @@
 /* CHAI FACTORY - backend (no installs needed, only Node.js)
-   Run:  node server/server.js   ->  http://localhost:3000
+   Run:  node server.js   ->  http://localhost:3000
    Serves the website AND saves orders + contact messages in server/data/*.json */
 'use strict';
 const https = require('https'), http = require('http'), fs = require('fs'), path = require('path'), crypto = require('crypto');
 
 const PORT = parseInt(process.env.PORT, 10) || 3000;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'chai123';   // change this!
-const SITE = path.resolve(__dirname, '..');
+const SITE = __dirname;
 const DATA = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(__dirname, 'data');   // on hosting: point DATA_DIR at a persistent disk
 const TG_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '', TG_CHAT = process.env.TELEGRAM_CHAT_ID || '';   // optional: orders also arrive on your Telegram
 const GST = 0.05, DELIVERY = 30, FREE_DELIVERY = 499;
@@ -156,12 +156,12 @@ async function api(req, res, url) {
 function serveStatic(req, res, url) {
   let rel = decodeURIComponent(url.pathname);
   if (rel === '/') rel = '/index.html';
-  if (rel === '/admin') rel = '/server/admin.html';
+  if (rel === '/admin') rel = '/admin.html';
   const full = path.resolve(SITE, '.' + rel);
   const rp = path.relative(SITE, full);
   const parts = rp.split(path.sep);
   // never serve server code/data or hidden files; stay inside the site folder
-  if (rp.startsWith('..') || path.isAbsolute(rp) || parts[0] === 'parts' || parts.some(s => s.startsWith('.')) || (parts[0] === 'server' && parts[1] !== 'admin.html')) return send(res, 404, 'Not found', { 'Content-Type': 'text/plain' });
+  if (rp.startsWith('..') || path.isAbsolute(rp) || parts[0] === 'parts' || parts.some(s => s.startsWith('.')) || ['server.js', 'data', 'package.json', 'render.yaml', 'node_modules'].includes(parts[0])) return send(res, 404, 'Not found', { 'Content-Type': 'text/plain' });
   fs.readFile(full, (err, buf) => {
     if (err) return send(res, 404, 'Not found', { 'Content-Type': 'text/plain' });
     send(res, 200, buf, { 'Content-Type': MIME[path.extname(full).toLowerCase()] || 'application/octet-stream', 'Cache-Control': 'no-cache' });

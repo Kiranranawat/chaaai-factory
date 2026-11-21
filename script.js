@@ -140,51 +140,51 @@
 
   /* ==========================================================
      DATA — chai menu, snacks, combos, studio ingredients
-     Set `photo` to an image path (e.g. 'images/masala.jpg') to show a real
+     Set `photo` to an image path (e.g. 'masala.jpg') to show a real
      photograph instead of the generated artwork for that item.
      ========================================================== */
   const CHAI = [
-    { id: 'classic', name: 'Classic Chai', price: 79, tag: 'Everyday', vessel: 'glass', garnish: 'none', a: '#d4974f', b: '#85481c', glow: '#6b3a1a', photo: 'assets/images/chai/classic.jpg', pos: '50% 50%',
+    { id: 'classic', name: 'Classic Chai', price: 79, tag: 'Everyday', vessel: 'glass', garnish: 'none', a: '#d4974f', b: '#85481c', glow: '#6b3a1a', photo: 'classic.jpg', pos: '50% 50%',
       desc: 'Strong Assam leaves, full-cream milk and a little sugar. Chai the way your home makes it.',
       notes: ['Assam tea', 'Full-cream milk', 'Sugar'] },
-    { id: 'masala', name: 'Masala Chai', price: 129, tag: 'Bestseller', vessel: 'glass', garnish: 'masala', a: '#d79a54', b: '#7e411a', glow: '#8a4a1e', photo: 'assets/images/chai/masala.jpg', pos: '50% 50%',
+    { id: 'masala', name: 'Masala Chai', price: 129, tag: 'Bestseller', vessel: 'glass', garnish: 'masala', a: '#d79a54', b: '#7e411a', glow: '#8a4a1e', photo: 'masala.jpg', pos: '50% 50%',
       desc: 'Our signature brew — crushed cardamom, cloves, cinnamon and black pepper in strong tea.',
       notes: ['Cardamom', 'Cloves', 'Cinnamon', 'Black pepper'] },
-    { id: 'adrak', name: 'Adrak Chai', price: 119, tag: 'Warming', vessel: 'glass', garnish: 'adrak', a: '#d9a25c', b: '#8a5120', glow: '#7a5a20', photo: 'assets/images/chai/adrak.jpg', pos: '50% 50%',
+    { id: 'adrak', name: 'Adrak Chai', price: 119, tag: 'Warming', vessel: 'glass', garnish: 'adrak', a: '#d9a25c', b: '#8a5120', glow: '#7a5a20', photo: 'adrak.jpg', pos: '50% 50%',
       desc: 'Fresh-crushed ginger simmered hard for a bold, peppery kick. Perfect for rainy evenings.',
       notes: ['Fresh ginger', 'Assam tea', 'Milk'] },
-    { id: 'elaichi', name: 'Elaichi Chai', price: 139, tag: 'Aromatic', vessel: 'glass', garnish: 'elaichi', a: '#dfb577', b: '#97602a', glow: '#4f6a2a', photo: 'assets/images/chai/elaichi.jpg', pos: '50% 50%',
+    { id: 'elaichi', name: 'Elaichi Chai', price: 139, tag: 'Aromatic', vessel: 'glass', garnish: 'elaichi', a: '#dfb577', b: '#97602a', glow: '#4f6a2a', photo: 'elaichi.jpg', pos: '50% 50%',
       desc: 'Pounded green cardamom pods lend a sweet, floral aroma to a creamy, golden cup.',
       notes: ['Green cardamom', 'Full-cream milk'] },
-    { id: 'kesar', name: 'Kesar Chai', price: 189, tag: 'Royal', vessel: 'glass', garnish: 'kesar', a: '#f0c46a', b: '#b9731f', glow: '#a2681a', photo: 'assets/images/chai/kesar.jpg', pos: '50% 40%',
+    { id: 'kesar', name: 'Kesar Chai', price: 189, tag: 'Royal', vessel: 'glass', garnish: 'kesar', a: '#f0c46a', b: '#b9731f', glow: '#a2681a', photo: 'kesar.jpg', pos: '50% 40%',
       desc: 'Hand-picked saffron strands steeped in rich milk for a regal, golden finish.',
       notes: ['Saffron', 'Cardamom', 'Rich milk'] },
-    { id: 'kulhad', name: 'Kulhad Chai', price: 99, tag: 'Earthy', vessel: 'kulhad', garnish: 'kulhad', a: '#cf8f4f', b: '#7a421b', glow: '#8d4524', photo: 'assets/images/chai/kulhad.jpg', pos: '50% 55%',
+    { id: 'kulhad', name: 'Kulhad Chai', price: 99, tag: 'Earthy', vessel: 'kulhad', garnish: 'kulhad', a: '#cf8f4f', b: '#7a421b', glow: '#8d4524', photo: 'kulhad.jpg', pos: '50% 55%',
       desc: 'Poured piping hot into a hand-fired clay kulhad that adds a soft, earthy fragrance.',
       notes: ['Clay kulhad', 'Assam tea', 'Milk'] },
-    { id: 'cutting', name: 'Cutting Chai', price: 79, tag: 'Street Classic', vessel: 'cutting', garnish: 'cutting', a: '#d4974f', b: '#85481c', glow: '#6b3a1a', photo: 'assets/images/chai/cutting.jpg', pos: '50% 40%',
+    { id: 'cutting', name: 'Cutting Chai', price: 79, tag: 'Street Classic', vessel: 'cutting', garnish: 'cutting', a: '#d4974f', b: '#85481c', glow: '#6b3a1a', photo: 'cutting.jpg', pos: '50% 40%',
       desc: 'The Mumbai half-glass classic: strong, sweet and served fast — best with a crisp rusk.',
       notes: ['Half glass', 'Strong tea', 'Sugar'] },
-    { id: 'tandoori', name: 'Special Tandoori Chai', price: 159, tag: 'Chef Special', vessel: 'kulhad', garnish: 'kulhad', a: '#b9783a', b: '#4a2410', glow: '#6d3a1a', photo: 'assets/images/chai/tandoori.jpg', pos: '50% 45%',
+    { id: 'tandoori', name: 'Special Tandoori Chai', price: 159, tag: 'Chef Special', vessel: 'kulhad', garnish: 'kulhad', a: '#b9783a', b: '#4a2410', glow: '#6d3a1a', photo: 'tandoori.jpg', pos: '50% 45%',
       desc: 'Chai poured into a clay cup heated in the tandoor — smoky, caramelised and unforgettable.',
       notes: ['Tandoor-fired kulhad', 'Smoky finish', 'Spiced milk'] }
   ];
 
   const SNACKS = [
-    { id: 'samosa', photo: 'assets/images/snacks/samosa.jpg', name: 'Samosa', price: 30, cat: 'Indian Snacks', shape: 'samosa', c1: '#e9b85c', c2: '#b9772a', desc: 'Flaky pastry stuffed with spiced potato and peas, fried till golden.' },
-    { id: 'kachori', photo: 'assets/images/snacks/kachori.jpg', name: 'Kachori', price: 35, cat: 'Indian Snacks', shape: 'kachori', c1: '#e8b663', c2: '#a9692a', desc: 'Crisp, puffed shell filled with a spicy moong dal mixture.' },
-    { id: 'breadpakoda', photo: 'assets/images/snacks/breadpakoda.jpg', name: 'Bread Pakoda', price: 40, cat: 'Indian Snacks', shape: 'bread', c1: '#e9b85c', c2: '#b0702a', desc: 'Bread slices stuffed with potato, dipped in besan batter and fried.' },
+    { id: 'samosa', photo: 'samosa.jpg', name: 'Samosa', price: 30, cat: 'Indian Snacks', shape: 'samosa', c1: '#e9b85c', c2: '#b9772a', desc: 'Flaky pastry stuffed with spiced potato and peas, fried till golden.' },
+    { id: 'kachori', photo: 'kachori.jpg', name: 'Kachori', price: 35, cat: 'Indian Snacks', shape: 'kachori', c1: '#e8b663', c2: '#a9692a', desc: 'Crisp, puffed shell filled with a spicy moong dal mixture.' },
+    { id: 'breadpakoda', photo: 'breadpakoda.jpg', name: 'Bread Pakoda', price: 40, cat: 'Indian Snacks', shape: 'bread', c1: '#e9b85c', c2: '#b0702a', desc: 'Bread slices stuffed with potato, dipped in besan batter and fried.' },
     { id: 'aloopakoda', name: 'Aloo Pakoda', price: 50, cat: 'Indian Snacks', shape: 'aloo', c1: '#e7b45a', c2: '#a86a28', desc: 'Thin potato slices coated in spiced gram-flour batter.' },
-    { id: 'onionpakoda', photo: 'assets/images/snacks/onionpakoda.jpg', name: 'Onion Pakoda', price: 50, cat: 'Indian Snacks', shape: 'onion', c1: '#e3a94f', c2: '#a05f22', desc: 'Crunchy onion fritters, the monsoon\'s favourite companion.' },
-    { id: 'mirchivada', photo: 'assets/images/snacks/mirchivada.jpg', name: 'Mirchi Vada', price: 45, cat: 'Indian Snacks', shape: 'mirchi', c1: '#e9bb62', c2: '#a76a2a', desc: 'Jaipur-style green chilli stuffed with masala and fried in besan.' },
-    { id: 'vadapav', photo: 'assets/images/snacks/vadapav.jpg', name: 'Vada Pav', price: 40, cat: 'Indian Snacks', shape: 'vadapav', c1: '#dca868', c2: '#a8702f', desc: 'Mumbai\'s burger: a spicy potato vada in a soft pav with chutneys.' },
-    { id: 'dhokla', photo: 'assets/images/snacks/dhokla.jpg', name: 'Dhokla', price: 60, cat: 'Indian Snacks', shape: 'dhokla', c1: '#f3d867', c2: '#d0a92d', desc: 'Soft, steamed gram-flour cakes tempered with mustard and curry leaves.' },
-    { id: 'vegsandwich', photo: 'assets/images/snacks/vegsandwich.jpg', name: 'Veg Sandwich', price: 70, cat: 'Sandwiches', shape: 'sandwich', cheese: false, c1: '#f1d9a6', c2: '#caa45a', desc: 'Cucumber, tomato, beetroot and green chutney between toasted bread.' },
-    { id: 'cheesesandwich', photo: 'assets/images/snacks/cheesesandwich.jpg', name: 'Cheese Sandwich', price: 90, cat: 'Sandwiches', shape: 'sandwich', cheese: true, c1: '#f1d9a6', c2: '#caa45a', desc: 'Grilled, golden and oozing with melted cheese.' },
-    { id: 'garlicbread', photo: 'assets/images/snacks/garlicbread.jpg', name: 'Garlic Bread', price: 80, cat: 'Bakery', shape: 'garlic', c1: '#eac27a', c2: '#b98536', desc: 'Toasted baguette slices glazed with garlic-herb butter.' },
-    { id: 'brownie', photo: 'assets/images/snacks/brownie.jpg', name: 'Chocolate Brownie', price: 85, cat: 'Bakery', shape: 'brownie', c1: '#6b3a22', c2: '#2e160b', desc: 'Fudgy, dense chocolate brownie with a crackly top.' },
-    { id: 'cookies', photo: 'assets/images/snacks/cookies.jpg', name: 'Cookies', price: 60, cat: 'Bakery', shape: 'cookies', c1: '#d9a86a', c2: '#a8702f', desc: 'Buttery, crisp-edged cookies loaded with chocolate chips.' },
-    { id: 'croissant', photo: 'assets/images/snacks/croissant.jpg', name: 'Croissant', price: 95, cat: 'Bakery', shape: 'croissant', c1: '#eec27a', c2: '#bf823a', desc: 'Flaky, buttery layers baked golden — lovely dunked in chai.' }
+    { id: 'onionpakoda', photo: 'onionpakoda.jpg', name: 'Onion Pakoda', price: 50, cat: 'Indian Snacks', shape: 'onion', c1: '#e3a94f', c2: '#a05f22', desc: 'Crunchy onion fritters, the monsoon\'s favourite companion.' },
+    { id: 'mirchivada', photo: 'mirchivada.jpg', name: 'Mirchi Vada', price: 45, cat: 'Indian Snacks', shape: 'mirchi', c1: '#e9bb62', c2: '#a76a2a', desc: 'Jaipur-style green chilli stuffed with masala and fried in besan.' },
+    { id: 'vadapav', photo: 'vadapav.jpg', name: 'Vada Pav', price: 40, cat: 'Indian Snacks', shape: 'vadapav', c1: '#dca868', c2: '#a8702f', desc: 'Mumbai\'s burger: a spicy potato vada in a soft pav with chutneys.' },
+    { id: 'dhokla', photo: 'dhokla.jpg', name: 'Dhokla', price: 60, cat: 'Indian Snacks', shape: 'dhokla', c1: '#f3d867', c2: '#d0a92d', desc: 'Soft, steamed gram-flour cakes tempered with mustard and curry leaves.' },
+    { id: 'vegsandwich', photo: 'vegsandwich.jpg', name: 'Veg Sandwich', price: 70, cat: 'Sandwiches', shape: 'sandwich', cheese: false, c1: '#f1d9a6', c2: '#caa45a', desc: 'Cucumber, tomato, beetroot and green chutney between toasted bread.' },
+    { id: 'cheesesandwich', photo: 'cheesesandwich.jpg', name: 'Cheese Sandwich', price: 90, cat: 'Sandwiches', shape: 'sandwich', cheese: true, c1: '#f1d9a6', c2: '#caa45a', desc: 'Grilled, golden and oozing with melted cheese.' },
+    { id: 'garlicbread', photo: 'garlicbread.jpg', name: 'Garlic Bread', price: 80, cat: 'Bakery', shape: 'garlic', c1: '#eac27a', c2: '#b98536', desc: 'Toasted baguette slices glazed with garlic-herb butter.' },
+    { id: 'brownie', photo: 'brownie.jpg', name: 'Chocolate Brownie', price: 85, cat: 'Bakery', shape: 'brownie', c1: '#6b3a22', c2: '#2e160b', desc: 'Fudgy, dense chocolate brownie with a crackly top.' },
+    { id: 'cookies', photo: 'cookies.jpg', name: 'Cookies', price: 60, cat: 'Bakery', shape: 'cookies', c1: '#d9a86a', c2: '#a8702f', desc: 'Buttery, crisp-edged cookies loaded with chocolate chips.' },
+    { id: 'croissant', photo: 'croissant.jpg', name: 'Croissant', price: 95, cat: 'Bakery', shape: 'croissant', c1: '#eec27a', c2: '#bf823a', desc: 'Flaky, buttery layers baked golden — lovely dunked in chai.' }
   ];
 
   const COMBOS = [
